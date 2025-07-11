@@ -24,7 +24,7 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 p-4 xl:p-6"
     >
       <div className="w-full max-w-7xl mx-auto">
-        <div className="glass px-6 py-4 flex items-center justify-between w-full">
+        <div className={`glass-navbar px-6 py-4 flex items-center justify-between w-full ${isOpen ? 'menu-open' : ''}`}>
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <motion.div
@@ -80,7 +80,7 @@ const Navbar = () => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg glass-light text-white hover:text-purple-300 transition-colors"
+            className="md:hidden p-2 rounded-lg glass-mobile-button text-white hover:text-purple-300 transition-colors"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </motion.button>
@@ -96,7 +96,7 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className="md:hidden mt-4"
             >
-              <div className="glass p-4 space-y-2">
+              <div className="glass-mobile-menu p-4 space-y-2">
                 {navItems.map((item, index) => {
                   const Icon = item.icon
                   return (
@@ -111,8 +111,8 @@ const Navbar = () => {
                         onClick={() => setIsOpen(false)}
                         className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ${
                           isActive(item.path)
-                            ? 'bg-white/20 text-white'
-                            : 'text-gray-300 hover:text-white hover:bg-white/10'
+                            ? 'bg-gradient-to-r from-purple-500/30 to-pink-500/30 text-white backdrop-blur-sm border border-white/20 shadow-lg'
+                            : 'text-gray-200 hover:text-white hover:bg-white/20 hover:backdrop-blur-sm hover:border hover:border-white/10 hover:shadow-md'
                         }`}
                       >
                         <Icon className="w-5 h-5" />

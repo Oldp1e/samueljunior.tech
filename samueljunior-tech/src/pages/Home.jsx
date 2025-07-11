@@ -111,7 +111,7 @@ const Home = () => {
               <Button variant="secondary" size="lg" className="group" onClick={() => navigate('/curriculum')}>
                 <span className="flex items-center space-x-2">
                   <Download className="w-5 h-5" />
-                  <span>Download CV</span>
+                  <span>Currículo</span>
                 </span>
               </Button>
             </motion.div>

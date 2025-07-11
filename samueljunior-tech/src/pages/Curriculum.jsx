@@ -1,11 +1,29 @@
 import { motion } from 'framer-motion'
 import { Download, Mail, Phone, MapPin, Github, Linkedin, Calendar, ExternalLink } from 'lucide-react'
+import { pdf } from '@react-pdf/renderer'
+import { saveAs } from 'file-saver'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
+import CVDocument from '../components/CVDocument'
 
 const Curriculum = () => {
-  const handleDownloadPDF = () => {
-    window.print()
+  const navigate = useNavigate()
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false)
+
+  const handleDownloadPDF = async () => {
+    setIsGeneratingPDF(true)
+    try {
+      const blob = await pdf(<CVDocument />).toBlob()
+      saveAs(blob, 'Samuel_Pereira_Lima_Junior_CV.pdf')
+    } catch (error) {
+      console.error('Erro ao gerar PDF:', error)
+      // Fallback para impressão tradicional
+      window.print()
+    } finally {
+      setIsGeneratingPDF(false)
+    }
   }
 
   const personalInfo = {
@@ -140,16 +158,28 @@ const Curriculum = () => {
 
   const education = [
     {
-      degree: 'Análise e Desenvolvimento de Sistemas',
-      institution: 'Faculdade de Tecnologia',
-      period: '2020 - 2022',
-      description: 'Foco em desenvolvimento de software, gestão de projetos, banco de dados e engenharia de software'
+      degree: 'Bacharelado, Engenharia de Software',
+      institution: 'Anhanguera Educacional',
+      period: 'nov de 2024 - abr de 2028',
+      description: 'Curso superior focado em engenharia de software, desenvolvimento de sistemas e gestão de projetos tecnológicos'
     },
     {
-      degree: 'Certificações Técnicas',
-      institution: 'Diversas Instituições',
-      period: '2018 - Atual',
-      description: 'Mais de 6 certificações em tecnologias como Unity, PHP, JavaScript, Segurança e DevOps'
+      degree: 'Graduação, Tecnólogo em Desenvolvimento de Jogos Digitais',
+      institution: 'Fatec Americana "Ministro Ralph Biasi"',
+      period: '2021 - 2023',
+      description: 'Ganhador do Prêmio em Grupo Huizinga no desenvolvimento de um jogo analógico. Competências: TypeScript'
+    },
+    {
+      degree: 'Bacharelado em Ciências da Computação, Tecnologia da Informação',
+      institution: 'Faculdade de Americana',
+      period: 'fev de 2018 - fev de 2022',
+      description: 'Qualificado para tratar tarefas computacionais em qualquer ramo do conhecimento onde a informática é utilizada. Curso trancado em 2020 devido à mudança de foco profissional.'
+    },
+    {
+      degree: 'Técnico, Tecnologia em Informática/Software',
+      institution: 'ETEC - Escola Técnica Estadual de São Paulo',
+      period: '2015 - 2017',
+      description: 'Formação técnica em desenvolvimento de software e tecnologias da informação'
     }
   ]
 
@@ -172,13 +202,21 @@ const Curriculum = () => {
             </p>
             <Button
               onClick={handleDownloadPDF}
+              disabled={isGeneratingPDF}
               className="group"
               size="lg"
             >
-              <span className="flex items-center space-x-2">
-                <Download className="w-5 h-5" />
-                <span>Baixar PDF</span>
-              </span>
+              {isGeneratingPDF ? (
+                <span className="flex items-center space-x-2">
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>Gerando PDF...</span>
+                </span>
+              ) : (
+                <span className="flex items-center space-x-2">
+                  <Download className="w-5 h-5" />
+                  <span>Baixar PDF</span>
+                </span>
+              )}
             </Button>
           </motion.div>
 
@@ -276,15 +314,26 @@ const Curriculum = () => {
               className="mb-8"
             >
               <Card className="p-6 print:shadow-none print:border print:border-gray-300">
-                <h3 className="text-xl font-bold text-white print:text-black mb-6">Projetos Destacados</h3>
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl font-bold text-white print:text-black">Projetos Destacados</h3>
+                  <Button
+                    onClick={() => navigate('/projects')}
+                    className="text-sm print:hidden"
+                    variant="outline"
+                  >
+                    Ver Todos os Projetos
+                  </Button>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {projects.map((project, index) => (
-                    <div key={index} className="p-4 bg-white/5 print:bg-gray-50 rounded-lg border border-white/10 print:border-gray-300">
+                    <div 
+                      key={index} 
+                      className="p-4 bg-white/5 print:bg-gray-50 rounded-lg border border-white/10 print:border-gray-300 print:cursor-default cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-purple-500/50 print:hover:bg-gray-50 print:hover:border-gray-300 group"
+                      onClick={() => !window.matchMedia('print').matches && navigate('/projects')}
+                    >
                       <div className="flex items-start justify-between mb-2">
-                        <h4 className="font-semibold text-white print:text-black">{project.name}</h4>
-                        {project.link && (
-                          <ExternalLink className="w-4 h-4 text-gray-400 print:hidden" />
-                        )}
+                        <h4 className="font-semibold text-white print:text-black group-hover:text-purple-300 print:group-hover:text-black transition-colors">{project.name}</h4>
+                        <ExternalLink className="w-4 h-4 text-gray-400 print:hidden group-hover:text-purple-400 transition-colors" />
                       </div>
                       <p className="text-gray-400 print:text-gray-700 text-sm mb-3">{project.description}</p>
                       <div className="flex flex-wrap gap-1">
@@ -299,6 +348,11 @@ const Curriculum = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+                <div className="mt-6 text-center print:hidden">
+                  <p className="text-gray-400 text-sm mb-3">
+                    Clique em qualquer projeto para ver mais detalhes na página de projetos
+                  </p>
                 </div>
               </Card>
             </motion.div>
