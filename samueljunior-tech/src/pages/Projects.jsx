@@ -1,14 +1,19 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, Play, Filter, Search } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import YouTubePlayer from '../components/YouTubePlayer'
+import ProjectModal from '../components/ProjectModal'
 
 const Projects = () => {
+  const navigate = useNavigate()
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   const [currentVideo, setCurrentVideo] = useState(null)
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const categories = [
     { id: 'all', label: 'Todos', count: 12 },
@@ -23,11 +28,31 @@ const Projects = () => {
       title: 'Entity Strike',
       category: 'game',
       description: 'Jogo estilo Survivors onde o player deve sobreviver a hordas de inimigos.',
+      detailedDescription: `
+        <p><strong>Entity Strike</strong> é um jogo indie no estilo bullet-hell/survivors desenvolvido em Unity. O jogador deve sobreviver a ondas infinitas de inimigos enquanto coleta power-ups e evolui suas habilidades.</p>
+        
+        <p>O jogo apresenta:</p>
+        <ul>
+          <li>Sistema de progressão de personagem com múltiplas habilidades</li>
+          <li>Mecânicas de combate fluidas e responsivas</li>
+          <li>Geração procedural de inimigos e power-ups</li>
+          <li>Sistema de pontuação e ranking global</li>
+        </ul>
+      `,
+      features: [
+        'Sistema de progressão dinâmico',
+        'Múltiplas armas e habilidades',
+        'Sistema de conquistas e desafios',
+        'Gráficos 2D Integrados junto com Artista',
+        'Soundtrack Insana',
+        'Sistema de conquistas'
+      ],
+      challenges: 'O maior desafio foi otimizar o sistema de spawn de inimigos para manter 60fps mesmo com centenas de entidades na tela. Implementei um sistema de object pooling e otimizações específicas para dispositivos de menor performance.',
       image: 'store_capsule_header.jpg',
       videoUrl: 'https://www.youtube.com/watch?v=wzA4JLpE3ts',
       technologies: ['Unity', 'C#', '2D'],
       liveUrl: 'https://store.steampowered.com/app/3685980/Entity_Strike/',
-      liveUrlText: 'Steam', // Texto customizado para o botão
+      liveUrlText: 'Steam',
       githubUrl: 'https://github.com/Oldp1e/EntityStrike',
       featured: true
     },
@@ -36,10 +61,30 @@ const Projects = () => {
       title: 'Easy Bid',
       category: 'web',
       description: 'Plataforma de cotações fáceis com prompts via IA para otimizar processos com sistema de controle.',
+      detailedDescription: `
+        <p><strong>Easy Bid</strong> é uma plataforma inovadora que revoluciona o processo de cotações empresariais através da inteligência artificial.</p>
+        
+        <p>A aplicação permite:</p>
+        <ul>
+          <li>Geração automática de cotações via prompts inteligentes</li>
+          <li>Sistema de controle e aprovação multi-nível</li>
+          <li>Dashboard analítico com métricas em tempo real</li>
+          <li>Integração com fornecedores e sistemas ERP</li>
+        </ul>
+      `,
+      features: [
+        'IA para geração de cotações',
+        'Sistema de aprovação workflow',
+        'Dashboard analytics',
+        'API REST completa',
+        'Autenticação JWT',
+        'Notificações em tempo real'
+      ],
+      challenges: 'Implementar um sistema de IA que compreendesse o contexto específico de cada empresa foi complexo. Criamos um sistema de treinamento personalizado que aprende com os dados históricos de cada cliente.',
       image: 'login.png',
-      videoUrl:  null,
+      videoUrl: null,
       technologies: ['React', 'Node.js', 'AI'],
-      liveUrl: null,     
+      liveUrl: null,
       githubUrl: 'https://github.com/Oldp1e/easybid/',
       featured: true
     },
@@ -47,10 +92,39 @@ const Projects = () => {
       id: 3,
       title: 'Cadastro de Fornecedores',
       category: 'web',
-      description: 'Fiz diversas aplicações, com fluxo interno de aprovações de usuarios e controle geral de UAC.',
+      description: 'Sistema híbrido de cadastro de fornecedores com mais de 15.000 usuários, integração com APIs governamentais e fluxo de aprovações multi-nível.',
+      detailedDescription: `
+        <p><strong>Sistema de Cadastro de Fornecedores</strong> é uma plataforma híbrida robusta que revolucionou o processo de onboarding de fornecedores para a GTPlan e empresas parceiras.</p>
+        
+        <p>O sistema oferece:</p>
+        <ul>
+          <li><strong>Cadastro Inteligente:</strong> Preenchimento automático de dados através de APIs da Receita Federal</li>
+          <li><strong>Validação em Tempo Real:</strong> Verificação instantânea de CNPJ e dados empresariais</li>
+          <li><strong>Fluxo de Aprovação Dupla:</strong> Sistema interno GTPlan + aprovação das empresas usuárias</li>
+          <li><strong>Arquitetura Híbrida:</strong> Serve tanto para cadastro de empresas quanto usuários individuais</li>
+          <li><strong>Escala Comprovada:</strong> Mais de 15.000 usuários cadastrados com sucesso</li>
+        </ul>
+        
+        <p>A plataforma eliminou gargalos manuais e reduziu o tempo de onboarding de dias para horas, mantendo alta qualidade e conformidade regulatória.</p>
+      `,
+      features: [
+        'Integração com API da Receita Federal',
+        'Preenchimento automático de dados empresariais',
+        'Sistema dual de aprovações (GTPlan + Cliente)',
+        'Validação de CNPJ em tempo real',
+        'Dashboard de controle de fluxo UAC',
+        'Suporte a cadastro híbrido (empresa/usuário)',
+        'Notificações automáticas por email',
+        'Relatórios de conversão e métricas',
+        'Interface responsiva e intuitiva',
+        'Sistema de auditoria completo',
+        'Gestão de documentos anexos',
+        'API REST para integrações externas'
+      ],
+      challenges: 'O maior desafio foi criar um sistema que atendesse simultaneamente dois públicos distintos (empresas e usuários individuais) mantendo a simplicidade. Implementei uma arquitetura modular que adapta o fluxo conforme o tipo de cadastro, além de integrar múltiplas APIs governamentais com diferentes padrões de resposta. A escalabilidade para 15.000+ usuários exigiu otimizações específicas no banco de dados e cache inteligente para as consultas de CNPJ.',
       image: 'gt-app.png',
-      videoUrl: null, // Sem vídeo
-      technologies: ['Scriptcase', 'PHP', 'Javascript'],
+      videoUrl: null,
+      technologies: ['Scriptcase', 'PHP', 'Javascript', 'API Receita Federal', 'MySQL', 'UAC'],
       liveUrl: 'https://app.gtplan.net/uac222b_prereg_validate/uac222b_prereg_validate.php',
       liveUrlText: 'Visualizar',
       githubUrl: null,
@@ -60,12 +134,37 @@ const Projects = () => {
       id: 4,
       title: 'Módulo Frequência Web',
       category: 'web',
-      description: 'Modernização do sistema legado Gurhu para uma aplicação web intuitiva, focada em gestão de frequência, plantões e recursos humanos na área da saúde pública. Permite cadastro de feriados, registro de plantões, faltas, hora extra, adicional noturno, importação de arquivos e controle de frequência dos servidores das UBS, hospitais e UPAs, acessível de qualquer dispositivo.',
-      image: 'tegra.png', // Salve a imagem em src/images/modulo-frequencia.png
-      videoUrl: '', // coloque aqui se houver um vídeo de demo no YouTube
+      description: 'Modernização do sistema legado Gurhu para uma aplicação web intuitiva, focada em gestão de frequência, plantões e recursos humanos na área da saúde pública.',
+      detailedDescription: `
+        <p><strong>Módulo Frequência Web</strong> é a modernização completa do sistema legado Gurhu, transformando-o em uma aplicação web moderna e intuitiva.</p>
+        
+        <p>O sistema abrange:</p>
+        <ul>
+          <li>Gestão completa de frequência de servidores</li>
+          <li>Controle de plantões médicos e turnos</li>
+          <li>Registro de faltas, horas extras e adicional noturno</li>
+          <li>Importação automática de arquivos XML/XLSX</li>
+          <li>Dashboard gerencial com relatórios avançados</li>
+        </ul>
+        
+        <p>Atende UBS, hospitais e UPAs com interface responsiva acessível de qualquer dispositivo.</p>
+      `,
+      features: [
+        'Cadastro de feriados regionais',
+        'Registro de plantões automático',
+        'Controle de frequência em tempo real',
+        'Importação de dados em lote',
+        'Relatórios personalizáveis',
+        'Sistema de notificações',
+        'Controle de acesso por perfil',
+        'Interface responsiva'
+      ],
+      challenges: 'Migrar um sistema legado mantendo a integridade dos dados históricos enquanto modernizava a interface foi um grande desafio. Implementei uma estratégia de migração gradual com validação dupla dos dados.',
+      image: 'tegra.png',
+      videoUrl: '',
       technologies: ['PHP', 'Scriptcase', 'MySQL', 'PL/SQL', 'JWT', 'Importação XML/XLSX'],
-      liveUrl: '', // coloque a URL do sistema se for público ou um demo
-      githubUrl: '', // caso seja open-source, senão deixe em branco
+      liveUrl: '',
+      githubUrl: '',
       featured: false
     },
     {
@@ -102,6 +201,16 @@ const Projects = () => {
                          project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()))
     return matchesCategory && matchesSearch
   })
+
+  const openProjectModal = (project) => {
+    setSelectedProject(project)
+    setIsModalOpen(true)
+  }
+
+  const closeProjectModal = () => {
+    setIsModalOpen(false)
+    setSelectedProject(null)
+  }
 
   return (
     <div className="min-h-screen pt-24">
@@ -186,12 +295,15 @@ const Projects = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 layout
               >
-                <Card className="group overflow-hidden h-full">
+                <Card className="group overflow-hidden h-full cursor-pointer" onClick={() => openProjectModal(project)}>
                   {/* Project Image */}
                   <div className="relative overflow-hidden">
                     <div 
                       className="w-full h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center cursor-pointer relative"
-                      onClick={() => project.videoUrl && setCurrentVideo(project.videoUrl)}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        project.videoUrl && setCurrentVideo(project.videoUrl)
+                      }}
                     >
                       {/* Tentar carregar a imagem, fallback para gradiente */}
                       <img
@@ -257,7 +369,7 @@ const Projects = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex space-x-3">
+                    <div className="flex space-x-3" onClick={(e) => e.stopPropagation()}>
                       {project.liveUrl && (
                         <Button 
                           variant="secondary" 
@@ -328,10 +440,17 @@ const Projects = () => {
               Vamos trabalhar juntos no seu próximo projeto e criar algo incrível
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <Button size="lg">
+              <Button 
+                size="lg"
+                onClick={() => navigate('/contact')}
+              >
                 Iniciar Projeto
               </Button>
-              <Button variant="secondary" size="lg">
+              <Button 
+                variant="secondary" 
+                size="lg"
+                href="https://github.com/Oldp1e"
+              >
                 Ver Mais no GitHub
               </Button>
             </div>
@@ -347,6 +466,13 @@ const Projects = () => {
           onClose={() => setCurrentVideo(null)} 
         />
       )}
+
+      {/* Project Details Modal */}
+      <ProjectModal 
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeProjectModal}
+      />
     </div>
   )
 }
