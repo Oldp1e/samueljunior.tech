@@ -90,3 +90,46 @@
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
+
+/* Responsividade aprimorada para telas ultrawide */
+@media (min-width: 1920px) {
+  .hero-spacing {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+  
+  .section-ultrawide {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .hero-spacing {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+  }
+  
+  .section-ultrawide {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+}
+
+/* Melhor distribuição de conteúdo em telas grandes */
+.content-centered {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1920px) {
+  .content-centered {
+    max-width: 1600px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .content-centered {
+    max-width: 2000px;
+  }
+}

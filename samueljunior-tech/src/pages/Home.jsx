@@ -53,157 +53,163 @@ const Home = () => {
   return (
     <div className="min-h-screen pt-24">
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 py-20">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-center space-y-8"
-        >
-          {/* Main heading */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold text-white leading-tight"
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              Olá, eu sou{' '}
-              <span className="gradient-text">Samuel Junior</span>
-            </motion.h1>
-            
-            <motion.p 
-              variants={itemVariants}
-              className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
-            >
-              Full Stack Developer, Game Developer e Especialista em Cybersecurity
-            </motion.p>
-            
-            <motion.p 
-              variants={itemVariants}
-              className="text-lg text-gray-400 max-w-2xl mx-auto"
-            >
-              Criando experiências digitais inovadoras e soluções tecnológicas robustas 
-              através do <span className="text-purple-400 font-semibold">Tropical Pixel Studios</span>
-            </motion.p>
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div 
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6"
+      <section className="max-w-8xl mx-auto px-4 py-20 2xl:py-32">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-center space-y-8"
           >
-            <Button size="lg" className="group">
-              <span className="flex items-center space-x-2">
-                <span>Ver Projetos</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Button>
-            
-            <Button variant="secondary" size="lg" className="group">
-              <span className="flex items-center space-x-2">
-                <Download className="w-5 h-5" />
-                <span>Download CV</span>
-              </span>
-            </Button>
-          </motion.div>
+            {/* Main heading */}
+            <motion.div variants={itemVariants} className="space-y-6">
+              <motion.h1 
+                className="text-5xl md:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-white leading-tight"
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                Olá, eu sou{' '}
+                <span className="gradient-text">Samuel Junior</span>
+              </motion.h1>
+              
+              <motion.p 
+                variants={itemVariants}
+                className="text-xl md:text-2xl xl:text-3xl text-gray-300 max-w-4xl mx-auto"
+              >
+                Full Stack Developer, Game Developer e Especialista em Cybersecurity
+              </motion.p>
+              
+              <motion.p 
+                variants={itemVariants}
+                className="text-lg xl:text-xl text-gray-400 max-w-3xl mx-auto"
+              >
+                Criando experiências digitais inovadoras e soluções tecnológicas robustas 
+                através do <span className="text-purple-400 font-semibold">Tropical Pixel Studios</span>
+              </motion.p>
+            </motion.div>
 
-          {/* Social Links */}
-          <motion.div 
-            variants={itemVariants}
-            className="flex items-center justify-center space-x-6"
-          >
-            {[
-              { icon: Github, href: 'https://github.com', label: 'GitHub' },
-              { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-              { icon: Play, href: 'https://youtube.com', label: 'YouTube' }
-            ].map((social, index) => {
-              const Icon = social.icon
-              return (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="p-3 glass-light rounded-xl text-gray-400 hover:text-white transition-colors"
-                >
-                  <Icon className="w-6 h-6" />
-                </motion.a>
-              )
-            })}
+            {/* CTA Buttons */}
+            <motion.div 
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6"
+            >
+              <Button size="lg" className="group">
+                <span className="flex items-center space-x-2">
+                  <span>Ver Projetos</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Button>
+              
+              <Button variant="secondary" size="lg" className="group">
+                <span className="flex items-center space-x-2">
+                  <Download className="w-5 h-5" />
+                  <span>Download CV</span>
+                </span>
+              </Button>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div 
+              variants={itemVariants}
+              className="flex items-center justify-center space-x-6"
+            >
+              {[
+                { icon: Github, href: 'https://github.com', label: 'GitHub' },
+                { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+                { icon: Play, href: 'https://youtube.com', label: 'YouTube' }
+              ].map((social, index) => {
+                const Icon = social.icon
+                return (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="p-3 glass-light rounded-xl text-gray-400 hover:text-white transition-colors"
+                  >
+                    <Icon className="w-6 h-6" />
+                  </motion.a>
+                )
+              })}
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Skills Section */}
-      <section className="max-w-7xl mx-auto px-4 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Minhas <span className="gradient-text">Especialidades</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Combinando criatividade com tecnologia para entregar soluções excepcionais
-          </p>
-        </motion.div>
+      <section className="max-w-8xl mx-auto px-4 py-20 2xl:py-32">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-4">
+              Minhas <span className="gradient-text">Especialidades</span>
+            </h2>
+            <p className="text-gray-400 text-lg xl:text-xl max-w-3xl mx-auto">
+              Combinando criatividade com tecnologia para entregar soluções excepcionais
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skills.map((skill, index) => {
-            const Icon = skill.icon
-            return (
-              <motion.div
-                key={skill.title}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="p-6 text-center h-full">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${skill.color} flex items-center justify-center`}>
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {skill.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm">
-                    {skill.description}
-                  </p>
-                </Card>
-              </motion.div>
-            )
-          })}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8">
+            {skills.map((skill, index) => {
+              const Icon = skill.icon
+              return (
+                <motion.div
+                  key={skill.title}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="p-6 xl:p-8 text-center h-full">
+                    <div className={`w-16 h-16 xl:w-20 xl:h-20 mx-auto mb-4 xl:mb-6 rounded-2xl bg-gradient-to-br ${skill.color} flex items-center justify-center`}>
+                      <Icon className="w-8 h-8 xl:w-10 xl:h-10 text-white" />
+                    </div>
+                    <h3 className="text-xl xl:text-2xl font-semibold text-white mb-2 xl:mb-3">
+                      {skill.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm xl:text-base">
+                      {skill.description}
+                    </p>
+                  </Card>
+                </motion.div>
+              )
+            })}
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 py-20">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <Card className="p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Pronto para dar vida às suas ideias?
-            </h2>
-            <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-              Vamos conversar sobre seu próximo projeto e criar algo incrível juntos
-            </p>
-            <Button size="lg" className="group">
-              <span className="flex items-center space-x-2">
-                <span>Vamos Conversar</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Button>
-          </Card>
-        </motion.div>
+      <section className="max-w-8xl mx-auto px-4 py-20 2xl:py-32">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-12 xl:p-16 text-center">
+              <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-4 xl:mb-6">
+                Pronto para dar vida às suas ideias?
+              </h2>
+              <p className="text-gray-400 text-lg xl:text-xl mb-8 xl:mb-12 max-w-3xl mx-auto">
+                Vamos conversar sobre seu próximo projeto e criar algo incrível juntos
+              </p>
+              <Button size="lg" className="group xl:text-lg xl:px-10 xl:py-5">
+                <span className="flex items-center space-x-2">
+                  <span>Vamos Conversar</span>
+                  <ArrowRight className="w-5 h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Button>
+            </Card>
+          </motion.div>
+        </div>
       </section>
     </div>
   )

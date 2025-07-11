@@ -22,10 +22,10 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 p-4"
+      className="fixed top-0 left-0 right-0 z-50 p-4 xl:p-6"
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="glass px-6 py-4 flex items-center justify-between">
+      <div className="max-w-8xl mx-auto">
+        <div className="glass px-6 py-4 flex items-center justify-between max-w-7xl mx-auto">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <motion.div
