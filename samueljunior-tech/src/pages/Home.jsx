@@ -1,32 +1,35 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Download, Github, Linkedin, Play, Code, Gamepad2, Shield, Server } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { ArrowRight, Download, Github, Linkedin, Play, Code, Gamepad2, Shield, Server, Database, Cog } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 
 const Home = () => {
+  const navigate = useNavigate()
+  
   const skills = [
     { 
       icon: Code, 
       title: 'Full Stack Development',
-      description: 'React, Node.js, Python, TypeScript',
+      description: 'React, Node.js, PHP, Scriptcase, jQuery, TypeScript, JavaScript, CSS',
       color: 'from-blue-500 to-cyan-500'
     },
     { 
       icon: Gamepad2, 
       title: 'Game Development',
-      description: 'Unity, C#, Game Design',
+      description: 'Unity, C#, Game Design, Direção de Arte, Publicação, Marketing, Liderança de Equipe',
       color: 'from-purple-500 to-pink-500'
     },
     { 
       icon: Shield, 
-      title: 'Cybersecurity',
-      description: 'Ethical Hacking, Penetration Testing',
+      title: 'Security & Infrastructure',
+      description: 'UAC, Segurança de API, Firewall (PFsense), Windows Server, Hyper-V, Virtualização, Active Directory, FreeNAS, Monitoramento de Rede',
       color: 'from-red-500 to-orange-500'
     },
     { 
-      icon: Server, 
-      title: 'Infrastructure',
-      description: 'AWS, Docker, DevOps',
+      icon: Cog, 
+      title: 'Backend & API Engineering',
+      description: 'PHP, PL/SQL, MySQL, Oracle, REST APIs, OAuth, JWT, Payment Gateways, Microservices, Monoliths',
       color: 'from-green-500 to-teal-500'
     }
   ]
@@ -77,15 +80,15 @@ const Home = () => {
                 variants={itemVariants}
                 className="text-xl md:text-2xl xl:text-3xl text-gray-300 max-w-4xl mx-auto"
               >
-                Full Stack Developer, Game Developer e Especialista em Cybersecurity
+                Engenheiro de Software, Game Developer e Especialista em Backend
               </motion.p>
               
               <motion.p 
                 variants={itemVariants}
                 className="text-lg xl:text-xl text-gray-400 max-w-3xl mx-auto"
               >
-                Criando experiências digitais inovadoras e soluções tecnológicas robustas 
-                através do <span className="text-purple-400 font-semibold">Tropical Pixel Studios</span>
+                Criando experiências digitais inovadoras e divertidas 
+                através do meu estúdio <span className="text-purple-400 font-semibold">Tropical Pixel Studios</span>
               </motion.p>
             </motion.div>
 
@@ -94,7 +97,11 @@ const Home = () => {
               variants={itemVariants}
               className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6"
             >
-              <Button size="lg" className="group">
+              <Button 
+                size="lg" 
+                className="group"
+                onClick={() => navigate('/projects')}
+              >
                 <span className="flex items-center space-x-2">
                   <span>Ver Projetos</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -115,9 +122,9 @@ const Home = () => {
               className="flex items-center justify-center space-x-6"
             >
               {[
-                { icon: Github, href: 'https://github.com', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-                { icon: Play, href: 'https://youtube.com', label: 'YouTube' }
+                { icon: Github, href: 'https://github.com/Oldp1e', label: 'GitHub' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/samuel-lima-analista-ti/', label: 'LinkedIn' },
+                { icon: Play, href: 'https://youtube.com/oldp1e', label: 'YouTube' }
               ].map((social, index) => {
                 const Icon = social.icon
                 return (
@@ -127,7 +134,7 @@ const Home = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -2 }}
-                    className="p-3 glass-light rounded-xl text-gray-400 hover:text-white transition-colors"
+                    className="p-3 glass-light rounded-xl social-icon transition-colors"
                   >
                     <Icon className="w-6 h-6" />
                   </motion.a>
@@ -201,7 +208,11 @@ const Home = () => {
               <p className="text-gray-400 text-lg xl:text-xl mb-8 xl:mb-12 max-w-3xl mx-auto">
                 Vamos conversar sobre seu próximo projeto e criar algo incrível juntos
               </p>
-              <Button size="lg" className="group xl:text-lg xl:px-10 xl:py-5">
+              <Button 
+                size="lg" 
+                className="group xl:text-lg xl:px-10 xl:py-5"
+                onClick={() => navigate('/contact')}
+              >
                 <span className="flex items-center space-x-2">
                   <span>Vamos Conversar</span>
                   <ArrowRight className="w-5 h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform" />

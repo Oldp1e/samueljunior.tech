@@ -4,22 +4,22 @@ import { Github, Linkedin, Mail, Heart, Coffee } from 'lucide-react'
 const Footer = () => {
   const socialLinks = [
     { 
-      href: 'https://github.com', 
+      href: 'https://github.com/Oldp1e', 
       icon: Github, 
       label: 'GitHub',
-      color: 'hover:text-gray-400'
+      color: 'hover:text-white'
     },
     { 
-      href: 'https://linkedin.com', 
+      href: 'https://www.linkedin.com/in/samuel-lima-analista-ti/', 
       icon: Linkedin, 
       label: 'LinkedIn',
-      color: 'hover:text-blue-400'
+      color: 'hover:text-white'
     },
     { 
-      href: 'mailto:contato@samueljunior.tech', 
+      href: 'mailto:samuellima06091999@gmail.com', 
       icon: Mail, 
       label: 'Email',
-      color: 'hover:text-green-400'
+      color: 'hover:text-white'
     },
   ]
 
@@ -39,7 +39,7 @@ const Footer = () => {
               </motion.div>
               <div>
                 <h3 className="text-lg xl:text-xl font-bold text-white">Samuel Junior</h3>
-                <p className="text-gray-400 text-sm xl:text-base">Full Stack Developer & Game Developer</p>
+                <p className="text-gray-400 text-sm xl:text-base">Software Engineer & Game Developer</p>
               </div>
             </div>
 
@@ -57,7 +57,7 @@ const Footer = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.1, y: -2 }}
-                    className={`p-3 glass-light rounded-xl text-gray-400 transition-all duration-300 ${link.color}`}
+                    className={`p-3 glass-light rounded-xl social-icon transition-all duration-300 ${link.color}`}
                   >
                     <Icon className="w-5 h-5" />
                   </motion.a>

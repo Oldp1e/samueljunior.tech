@@ -1,37 +1,64 @@
 import { motion } from 'framer-motion'
-import { Calendar, MapPin, Coffee, Code, Award, Users } from 'lucide-react'
+import { Calendar, MapPin, Coffee, Code, Award, Users, Building } from 'lucide-react'
 import Card from '../components/ui/Card'
 
 const About = () => {
-  const experiences = [
+ const experiences = [
     {
-      year: '2024 - Atual',
-      title: 'Senior Full Stack Developer',
+      year: '2025 - Atual',
+      title: 'Founder & Game Developer',
       company: 'Tropical Pixel Studios',
-      description: 'Liderando o desenvolvimento de jogos e aplicações web inovadoras.',
-      skills: ['React', 'Node.js', 'Unity', 'C#', 'Python']
+      description:
+        'Lidero todas as etapas do desenvolvimento de jogos indie, incluindo programação, direção de arte, marketing e publicação, criando experiências marcantes para a comunidade gamer.',
+      skills: ['Unity', 'C#', 'Game Design', 'Direção de Arte', 'Publicação']
     },
     {
-      year: '2022 - 2024',
-      title: 'Cybersecurity Specialist',
-      company: 'Tech Security Corp',
-      description: 'Implementação de soluções de segurança e testes de penetração.',
-      skills: ['Ethical Hacking', 'AWS Security', 'Python', 'Linux']
+      year: '2023 - 2025',
+      title: 'PHP Developer III',
+      company: 'GTPLAN Supply Chain 4.0',
+      description:
+        'Desenvolvimento de backends escaláveis, integrações com APIs de pagamento (Vindi), automação de processos, controle de acesso seguro (UAC) e otimização de sistemas corporativos.',
+      skills: ['PHP', 'PL/SQL', 'JavaScript', 'APIs REST', 'Autenticação JWT']
     },
     {
-      year: '2020 - 2022',
-      title: 'Game Developer',
-      company: 'Indie Game Studio',
-      description: 'Desenvolvimento de jogos indie para múltiplas plataformas.',
-      skills: ['Unity', 'C#', 'Game Design', 'Mobile Development']
+      year: '2024',
+      title: 'Senior PHP Developer',
+      company: 'Tegra',
+      description:
+        'Gerenciei a modernização de um sistema legado de RH para uma solução web, implementando múltiplas camadas de segurança, importação de dados (XML/XLSX) e regras de negócio complexas.',
+      skills: ['PHP', 'Scriptcase', 'JWT', 'MD5 Hash', 'Importação de Dados']
+    },
+    {
+      year: '2020 - 2021',
+      title: 'Analista de TI Junior / Desenvolvedor Full Stack',
+      company: 'Brand Têxtil',
+      description:
+        'Atuei em infraestrutura, suporte, segurança de rede (PFsense), virtualização e desenvolvimento de soluções web internas usando PHP, MySQL e JavaScript.',
+      skills: ['Infraestrutura', 'PHP', 'MySQL', 'JavaScript', 'PFsense']
+    },
+    {
+      year: '2019 - 2020',
+      title: 'Analista de Redes Jr / Desenvolvedor WEB Full Stack',
+      company: 'Tecelagem Panamericana',
+      description:
+        'Responsável por suporte técnico, manutenção de hardware/software, rotinas de backup e desenvolvimento de soluções web para demandas internas.',
+      skills: ['Redes', 'PHP', 'MySQL', 'Suporte Técnico']
+    },
+    {
+      year: '2018 - 2019',
+      title: 'Professor de TI',
+      company: 'Microlins',
+      description:
+        'Ministrei aulas de informática e gestão empresarial para alunos de diferentes idades, elaborando conteúdos e treinamentos técnicos.',
+      skills: ['Docência', 'Informática', 'Gestão Empresarial', 'Comunicação']
     }
   ]
 
   const stats = [
-    { number: '50+', label: 'Projetos Concluídos', icon: Code },
-    { number: '5+', label: 'Anos de Experiência', icon: Calendar },
-    { number: '20+', label: 'Clientes Satisfeitos', icon: Users },
-    { number: '15+', label: 'Certificações', icon: Award }
+    { number: '20+', label: 'Projetos Concluídos', icon: Code },
+    { number: '6+', label: 'Anos de Experiência', icon: Calendar },
+    { number: '5', label: 'Empresas trabalhadas', icon: Building },
+    { number: '6+', label: 'Certificações', icon: Award }
   ]
 
   return (
@@ -67,24 +94,19 @@ const About = () => {
                 <h2 className="text-2xl xl:text-3xl font-bold text-white mb-6">Minha Jornada</h2>
                 <div className="space-y-6 text-gray-300 leading-relaxed text-base xl:text-lg">
                   <p>
-                    Olá! Sou Samuel Junior, um desenvolvedor brasileiro apaixonado por tecnologia 
-                    e inovação. Minha jornada no mundo da programação começou há mais de 5 anos, 
-                    e desde então tenho me dedicado a criar soluções que fazem a diferença.
+                    Opa, me chamo Samuel e sou Engenheiro de Software, Game Developer e Especialista em Backend. 
+                    Apaixonado por tecnologia e inovação, trilho minha carreira desenvolvendo soluções robustas, criativas e seguras para diferentes segmentos do mercado.
                   </p>
                   <p>
-                    Especializo-me em desenvolvimento full stack, criação de jogos e cybersecurity. 
-                    Minha abordagem combina criatividade com solidez técnica, sempre buscando 
-                    entregar experiências excepcionais aos usuários.
+                    Minha jornada começou há mais de 6 anos, passando por experiências em desenvolvimento full stack, infraestrutura, segurança, automação de processos e 
+                    criação de jogos digitais. Tenho sólida experiência em PHP, PL/SQL, JavaScript, React e integração de APIs, 
+                    sempre adotando princípios de clean code e foco em performance.
+                  </p>
+                  <p>Na <span className="text-purple-400 font-semibold">Tropical Pixel Studios</span>, meu estúdio independente, lidero todas as etapas do desenvolvimento de jogos da programação à publicação, 
+                  criando experiências marcantes para a comunidade gamer e construindo uma marca indie sustentável.                   
                   </p>
                   <p>
-                    Através do <span className="text-purple-400 font-semibold">Tropical Pixel Studios</span>, 
-                    meu estúdio independente, desenvolvo projetos que vão desde aplicações web 
-                    corporativas até jogos indie inovadores, sempre com foco na qualidade e na 
-                    experiência do usuário.
-                  </p>
-                  <p>
-                    Quando não estou codando, gosto de estudar novas tecnologias, contribuir 
-                    para projetos open source e compartilhar conhecimento com a comunidade de 
+                    Quando não estou codando, gosto de estudar novas tecnologias, jogar diversos jogos e compartilhar conhecimento com a comunidade de 
                     desenvolvedores.
                   </p>
                 </div>
@@ -103,7 +125,7 @@ const About = () => {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3 text-gray-300">
                     <MapPin className="w-5 h-5 text-purple-400" />
-                    <span>Brasil 🇧🇷</span>
+                    <span>SP - Brasil 🇧🇷</span>
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <Coffee className="w-5 h-5 text-purple-400" />
@@ -111,7 +133,7 @@ const About = () => {
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <Code className="w-5 h-5 text-purple-400" />
-                    <span>+50 projetos concluídos</span>
+                    <span>+20 projetos concluídos</span>
                   </div>
                 </div>
               </Card>
@@ -120,12 +142,12 @@ const About = () => {
                 <h3 className="text-xl xl:text-2xl font-bold text-white mb-4">Interesses</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    'Inteligência Artificial',
+                    'Jogos Indie',
                     'Game Development',
-                    'Cybersecurity',
-                    'Open Source',
-                    'Mobile Apps',
-                    'Cloud Computing'
+                    'Backend Development',
+                    'DevOps',
+                    'Unity e C#',
+                    'Software Engineering',
                   ].map((interest, index) => (
                     <motion.span
                       key={interest}
