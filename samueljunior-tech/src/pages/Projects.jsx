@@ -61,12 +61,11 @@ const Projects = () => {
       title: 'Módulo Frequência Web',
       category: 'web',
       description: 'Modernização do sistema legado Gurhu para uma aplicação web intuitiva, focada em gestão de frequência, plantões e recursos humanos na área da saúde pública. Permite cadastro de feriados, registro de plantões, faltas, hora extra, adicional noturno, importação de arquivos e controle de frequência dos servidores das UBS, hospitais e UPAs, acessível de qualquer dispositivo.',
-      image: 'tegra.png',
-      videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Substitua pela URL real
-      technologies: ['Vue.js', 'Python', 'FastAPI', 'WebSocket'],
-      liveUrl: 'https://security.com',
-      // liveUrlText não definido, usará "Demo" como padrão
-      githubUrl: 'https://github.com',
+      image: 'tegra.png', // Salve a imagem em src/images/modulo-frequencia.png
+      videoUrl: '', // coloque aqui se houver um vídeo de demo no YouTube
+      technologies: ['PHP', 'Scriptcase', 'MySQL', 'PL/SQL', 'JWT', 'Importação XML/XLSX'],
+      liveUrl: '', // coloque a URL do sistema se for público ou um demo
+      githubUrl: '', // caso seja open-source, senão deixe em branco
       featured: false
     },
     {
