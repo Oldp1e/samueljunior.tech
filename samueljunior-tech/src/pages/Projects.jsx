@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, Play, Filter, Search } from 'lucide-react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
+import YouTubePlayer from '../components/YouTubePlayer'
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const [currentVideo, setCurrentVideo] = useState(null)
 
   const categories = [
     { id: 'all', label: 'Todos', count: 12 },
@@ -18,45 +20,52 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-commerce Platform',
-      category: 'web',
-      description: 'Plataforma completa de e-commerce com React, Node.js e PostgreSQL',
-      image: '/api/placeholder/400/250',
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      liveUrl: 'https://demo.com',
-      githubUrl: 'https://github.com',
+      title: 'Entity Strike',
+      category: 'game',
+      description: 'Jogo estilo Survivors onde o player deve sobreviver a hordas de inimigos.',
+      image: 'store_capsule_header.jpg',
+      videoUrl: 'https://www.youtube.com/watch?v=wzA4JLpE3ts',
+      technologies: ['Unity', 'C#', '2D'],
+      liveUrl: 'https://store.steampowered.com/app/3685980/Entity_Strike/',
+      liveUrlText: 'Steam', // Texto customizado para o botão
+      githubUrl: 'https://github.com/Oldp1e/EntityStrike',
       featured: true
     },
     {
       id: 2,
-      title: 'Pixel Adventure',
-      category: 'game',
-      description: 'Jogo de plataforma 2D desenvolvido em Unity com mecânicas inovadoras',
-      image: '/api/placeholder/400/250',
-      technologies: ['Unity', 'C#', 'Mobile', '2D'],
-      liveUrl: 'https://play.google.com',
-      githubUrl: 'https://github.com',
+      title: 'Easy Bid',
+      category: 'web',
+      description: 'Plataforma de cotações fáceis com prompts via IA para otimizar processos com sistema de controle.',
+      image: 'login.png',
+      videoUrl:  null,
+      technologies: ['React', 'Node.js', 'AI'],
+      liveUrl: null,     
+      githubUrl: 'https://github.com/Oldp1e/easybid/',
       featured: true
     },
     {
       id: 3,
-      title: 'Task Management App',
-      category: 'mobile',
-      description: 'App móvel para gerenciamento de tarefas com sincronização em tempo real',
-      image: '/api/placeholder/400/250',
-      technologies: ['React Native', 'Firebase', 'Redux'],
-      liveUrl: 'https://app.com',
-      githubUrl: 'https://github.com',
+      title: 'Cadastro de Fornecedores',
+      category: 'web',
+      description: 'Fiz diversas aplicações, com fluxo interno de aprovações de usuarios e controle geral de UAC.',
+      image: 'gt-app.png',
+      videoUrl: null, // Sem vídeo
+      technologies: ['Scriptcase', 'PHP', 'Javascript'],
+      liveUrl: 'https://app.gtplan.net/uac222b_prereg_validate/uac222b_prereg_validate.php',
+      liveUrlText: 'Visualizar',
+      githubUrl: null,
       featured: false
     },
     {
       id: 4,
-      title: 'Cybersecurity Dashboard',
+      title: 'Módulo Frequência Web',
       category: 'web',
-      description: 'Dashboard para monitoramento de segurança com alertas em tempo real',
-      image: '/api/placeholder/400/250',
+      description: 'Modernização do sistema legado Gurhu para uma aplicação web intuitiva, focada em gestão de frequência, plantões e recursos humanos na área da saúde pública. Permite cadastro de feriados, registro de plantões, faltas, hora extra, adicional noturno, importação de arquivos e controle de frequência dos servidores das UBS, hospitais e UPAs, acessível de qualquer dispositivo.',
+      image: 'tegra.png',
+      videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Substitua pela URL real
       technologies: ['Vue.js', 'Python', 'FastAPI', 'WebSocket'],
       liveUrl: 'https://security.com',
+      // liveUrlText não definido, usará "Demo" como padrão
       githubUrl: 'https://github.com',
       featured: false
     },
@@ -65,7 +74,8 @@ const Projects = () => {
       title: 'RPG Maker Plugin',
       category: 'game',
       description: 'Plugin para RPG Maker que adiciona sistema de combate avançado',
-      image: '/api/placeholder/400/250',
+      image: 'rpg-plugin.jpg',
+      videoUrl: null, // Sem vídeo
       technologies: ['JavaScript', 'RPG Maker', 'Plugin'],
       liveUrl: null,
       githubUrl: 'https://github.com',
@@ -76,9 +86,11 @@ const Projects = () => {
       title: 'Weather App',
       category: 'mobile',
       description: 'Aplicativo de clima com previsões detalhadas e interface moderna',
-      image: '/api/placeholder/400/250',
+      image: 'weather-app.jpg',
+      videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Substitua pela URL real
       technologies: ['Flutter', 'Dart', 'OpenWeather API'],
       liveUrl: 'https://weather.com',
+      liveUrlText: 'Ver App', // Texto customizado para o botão
       githubUrl: 'https://github.com',
       featured: false
     }
@@ -178,8 +190,30 @@ const Projects = () => {
                 <Card className="group overflow-hidden h-full">
                   {/* Project Image */}
                   <div className="relative overflow-hidden">
-                    <div className="w-full h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-                      <Play className="w-12 h-12 text-white/60" />
+                    <div 
+                      className="w-full h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center cursor-pointer relative"
+                      onClick={() => project.videoUrl && setCurrentVideo(project.videoUrl)}
+                    >
+                      {/* Tentar carregar a imagem, fallback para gradiente */}
+                      <img
+                        src={`/images/${project.image}`}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.style.display = 'none'
+                        }}
+                      />
+                      
+                      {/* Play button overlay se houver vídeo */}
+                      {project.videoUrl && (
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                            <Play className="w-8 h-8 text-white ml-1" />
+                          </div>
+                        </div>
+                      )}
+                      
+                     
                     </div>
                     {project.featured && (
                       <div className="absolute top-4 left-4">
@@ -188,7 +222,6 @@ const Projects = () => {
                         </span>
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
                   {/* Project Content */}
@@ -235,19 +268,21 @@ const Projects = () => {
                         >
                           <span className="flex items-center justify-center space-x-2">
                             <ExternalLink className="w-4 h-4" />
-                            <span>Demo</span>
+                            <span>{project.liveUrlText || 'Demo'}</span>
                           </span>
                         </Button>
                       )}
                       
-                      <Button 
-                        variant="ghost" 
-                        size="sm"
-                        href={project.githubUrl}
-                        className="flex items-center justify-center"
-                      >
-                        <Github className="w-4 h-4" />
-                      </Button>
+                      {project.githubUrl && (
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          href={project.githubUrl}
+                          className="flex items-center justify-center"
+                        >
+                          <Github className="w-4 h-4" />
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </Card>
@@ -305,6 +340,14 @@ const Projects = () => {
         </motion.div>
         </div>
       </div>
+      
+      {/* YouTube Player Modal */}
+      {currentVideo && (
+        <YouTubePlayer 
+          videoUrl={currentVideo} 
+          onClose={() => setCurrentVideo(null)} 
+        />
+      )}
     </div>
   )
 }
