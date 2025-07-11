@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Layout from './components/layout/Layout'
+import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
@@ -11,6 +12,7 @@ import './App.css'
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Layout>
         <AnimatePresence mode="wait">
           <Routes>

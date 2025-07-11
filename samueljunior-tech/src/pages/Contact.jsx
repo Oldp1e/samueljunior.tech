@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Clock, MessageSquare } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Clock, MessageSquare, MessageCircle } from 'lucide-react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 
@@ -19,8 +19,13 @@ const Contact = () => {
     'Desenvolvimento Web',
     'Desenvolvimento de Jogos',
     'Aplicativo Mobile',
-    'UI/UX Design',
+    'Engenharia de Software',
     'Consultoria',
+    'Infraestrutura de TI',
+    'Segurança da Informação',
+    'Automação de Processos',
+    'Integração de Sistemas',
+    'Análise de Dados',
     'Outro'
   ]
 
@@ -28,14 +33,14 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      description: 'contato@samueljunior.tech',
-      action: 'mailto:contato@samueljunior.tech'
+      description: 'samuellima06091999@gmail.com',
+      action: 'mailto:samuellima06091999@gmail.com'
     },
     {
       icon: Phone,
       title: 'WhatsApp',
-      description: '+55 (11) 99999-9999',
-      action: 'https://wa.me/5511999999999'
+      description: '+55 (19) 99158-0864',
+      action: 'https://wa.me/5519991580864'
     },
     {
       icon: MapPin,
@@ -61,8 +66,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Simulação de envio (aqui você integraria com sua API)
+        
     try {
       await new Promise(resolve => setTimeout(resolve, 2000))
       setSubmitStatus('success')
@@ -308,7 +312,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-medium mb-2">
-                    Fazem orçamentos gratuitos?
+                    Faz orçamentos gratuitos?
                   </h4>
                   <p className="text-gray-400 text-sm">
                     Sim! A análise inicial e orçamento são sempre gratuitos.
@@ -316,10 +320,10 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-medium mb-2">
-                    Trabalham com projetos internacionais?
+                    Trabalha com projetos internacionais?
                   </h4>
                   <p className="text-gray-400 text-sm">
-                    Absolutamente! Temos experiência com clientes globais.
+                    Absolutamente! Tenho experiência com clientes globais.
                   </p>
                 </div>
               </div>
@@ -345,7 +349,7 @@ const Contact = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Button
                 size="lg"
-                href="https://calendly.com/samueljunior"
+                href="https://calendly.com/samuellima06091999/30min"
                 className="group"
               >
                 <span className="flex items-center space-x-2">
@@ -356,17 +360,21 @@ const Contact = () => {
               <Button
                 variant="secondary"
                 size="lg"
-                href="https://wa.me/5511999999999"
+                href="https://wa.me/5519991580864"
+                className="group"
               >
-                WhatsApp
+                <span className="flex items-center space-x-2">
+                  <MessageCircle className="w-5 h-5" />
+                  <span>WhatsApp</span>
+                </span>
               </Button>
             </div>
           </Card>
         </motion.div>
+        </div>
       </div>
     </div>
-  </div>
-  );
-};
+  )
+}
 
 export default Contact
