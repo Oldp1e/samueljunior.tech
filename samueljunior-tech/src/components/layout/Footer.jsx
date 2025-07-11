@@ -25,7 +25,7 @@ const Footer = () => {
 
   return (
     <footer className="relative mt-20">
-      <div className="max-w-8xl mx-auto px-4 py-8">
+      <div className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-8">
         <div className="glass p-8 xl:p-12 max-w-7xl mx-auto">
           <div className="flex flex-col xl:flex-row items-center justify-between space-y-8 xl:space-y-0">
             {/* Left side - Brand */}

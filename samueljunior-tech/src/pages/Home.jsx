@@ -53,8 +53,8 @@ const Home = () => {
   return (
     <div className="min-h-screen pt-24">
       {/* Hero Section */}
-      <section className="max-w-8xl mx-auto px-4 py-20 2xl:py-32">
-        <div className="max-w-6xl mx-auto">
+      <section className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-20 2xl:py-32">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -139,7 +139,7 @@ const Home = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="max-w-8xl mx-auto px-4 py-20 2xl:py-32">
+      <section className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-20 2xl:py-32">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -186,7 +186,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="max-w-8xl mx-auto px-4 py-20 2xl:py-32">
+      <section className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-20 2xl:py-32">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

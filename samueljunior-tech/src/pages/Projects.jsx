@@ -94,7 +94,8 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen pt-24">
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-12">
+        <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -302,6 +303,7 @@ const Projects = () => {
             </div>
           </Card>
         </motion.div>
+        </div>
       </div>
     </div>
   )
