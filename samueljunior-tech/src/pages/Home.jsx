@@ -108,7 +108,7 @@ const Home = () => {
                 </span>
               </Button>
               
-              <Button variant="secondary" size="lg" className="group">
+              <Button variant="secondary" size="lg" className="group" onClick={() => navigate('/curriculum')}>
                 <span className="flex items-center space-x-2">
                   <Download className="w-5 h-5" />
                   <span>Download CV</span>

@@ -169,14 +169,36 @@ const Projects = () => {
     },
     {
       id: 5,
-      title: 'RPG Maker Plugin',
-      category: 'game',
-      description: 'Plugin para RPG Maker que adiciona sistema de combate avançado',
-      image: 'rpg-plugin.jpg',
-      videoUrl: null, // Sem vídeo
-      technologies: ['JavaScript', 'RPG Maker', 'Plugin'],
+      title: 'Plugin - Desmarcar Checkboxes Publicador',
+      category: 'web',
+      description: 'Extensão para Chrome que facilita a experiência do usuário no Publicador, desmarcando automaticamente checkboxes quando detectadas.',
+      detailedDescription: `
+        <p><strong>Desmarcar Checkboxes Publicador</strong> é uma extensão para Chrome desenvolvida especificamente para otimizar o workflow no ambiente Publicador do Scriptcase.</p>
+        
+        <p>A extensão oferece:</p>
+        <ul>
+          <li>Detecção automática de checkboxes específicas na plataforma</li>
+          <li>Desmarcação automática para agilizar o processo</li>
+          <li>Interface simples e não intrusiva</li>
+          <li>Compatibilidade total com Chrome</li>
+        </ul>
+        
+        <p>Esta ferramenta foi criada para eliminar tarefas repetitivas e aumentar a produtividade dos desenvolvedores que trabalham com o Publicador.</p>
+      `,
+      features: [
+        'Detecção automática de checkboxes',
+        'Desmarcação automática inteligente',
+        'Interface não intrusiva',
+        'Compatibilidade com Chrome',
+        'Ativação automática no Publicador',
+        'Código aberto e personalizável'
+      ],
+      challenges: 'O principal desafio foi criar uma extensão que fosse específica o suficiente para funcionar apenas no ambiente Publicador, sem interferir em outras páginas. Implementei detectores inteligentes que identificam o contexto correto antes de executar as ações.',
+      image: 'sc-extension.png',
+      videoUrl: null,
+      technologies: ['JavaScript', 'Chrome Extension API', 'DOM Manipulation', 'Manifest V3'],
       liveUrl: null,
-      githubUrl: 'https://github.com',
+      githubUrl: 'https://github.com/Oldp1e/desmarcar-checkboxes-publicador',
       featured: false
     },
     {

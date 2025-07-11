@@ -133,3 +133,124 @@
     max-width: 2000px;
   }
 }
+
+/* Estilos de impressão para o currículo */
+@media print {
+  @page {
+    margin: 1cm;
+    size: A4;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  .print\:hidden {
+    display: none !important;
+  }
+  
+  .print\:text-black {
+    color: black !important;
+  }
+  
+  .print\:bg-gray-50 {
+    background-color: #f9fafb !important;
+  }
+  
+  .print\:bg-gray-100 {
+    background-color: #f3f4f6 !important;
+  }
+  
+  .print\:bg-gray-200 {
+    background-color: #e5e7eb !important;
+  }
+  
+  .print\:text-gray-600 {
+    color: #4b5563 !important;
+  }
+  
+  .print\:text-gray-700 {
+    color: #374151 !important;
+  }
+  
+  .print\:text-gray-800 {
+    color: #1f2937 !important;
+  }
+  
+  .print\:border {
+    border: 1px solid #d1d5db !important;
+  }
+  
+  .print\:border-gray-300 {
+    border-color: #d1d5db !important;
+  }
+  
+  .print\:border-gray-400 {
+    border-color: #9ca3af !important;
+  }
+  
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+  
+  .print\:pt-0 {
+    padding-top: 0 !important;
+  }
+  
+  .print\:px-8 {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  
+  .print\:py-4 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  .gradient-text {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: black !important;
+    color: black !important;
+  }
+  
+  * {
+    box-shadow: none !important;
+    background-image: none !important;
+  }
+  
+  .bg-slate-900 {
+    background-color: white !important;
+  }
+  
+  .bg-white\/5,
+  .bg-white\/10 {
+    background-color: #f3f4f6 !important;
+  }
+  
+  .text-white {
+    color: black !important;
+  }
+  
+  .text-gray-400 {
+    color: #374151 !important;
+  }
+  
+  .text-purple-400,
+  .text-purple-300,
+  .text-purple-500 {
+    color: #4b5563 !important;
+  }
+  
+  .border-purple-500 {
+    border-color: #9ca3af !important;
+  }
+  
+  .bg-purple-500\/20 {
+    background-color: #e5e7eb !important;
+  }
+}
