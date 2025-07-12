@@ -205,3 +205,32 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Custom animations for profile avatar */
+@keyframes gradient-shift {
+  0%, 100% {
+    background: linear-gradient(45deg, #8b5cf6, #ec4899, #8b5cf6);
+    transform: scale(1);
+  }
+  50% {
+    background: linear-gradient(225deg, #ec4899, #8b5cf6, #f59e0b, #ec4899);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.5), 0 0 40px rgba(139, 92, 246, 0.3);
+  }
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}

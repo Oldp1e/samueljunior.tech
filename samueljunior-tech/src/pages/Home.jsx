@@ -99,6 +99,46 @@ const Home = () => {
           >
             {/* Main heading */}
             <motion.div variants={itemVariants} className="space-y-6">
+              {/* Profile Avatar */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                className="relative mx-auto mb-8"
+              >
+                <div className="w-32 h-32 md:w-40 md:h-40 xl:w-48 xl:h-48 mx-auto relative">
+                  {/* Animated gradient ring with breathing effect */}
+                  <div className="absolute inset-0 rounded-full animate-gradient-shift animate-pulse-glow p-1">
+                    <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center">
+                      <img
+                        src="/images/samuel-avatar.jpeg"
+                        alt="Samuel Junior - Software Engineer"
+                        className="w-full h-full rounded-full object-cover border-2 border-gray-800"
+                        onError={(e) => {
+                          // Fallback para um gradiente se a imagem não carregar
+                          e.target.style.display = 'none'
+                          e.target.nextSibling.style.display = 'flex'
+                        }}
+                      />
+                      {/* Fallback avatar */}
+                      <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-3xl md:text-4xl xl:text-5xl font-bold hidden">
+                        SJ
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Status indicator with gentle pulse */}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 1, type: "spring", stiffness: 500 }}
+                    className="absolute bottom-2 right-2 w-6 h-6 md:w-8 md:h-8 bg-green-500 rounded-full border-4 border-gray-900 flex items-center justify-center"
+                  >
+                    <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full animate-pulse"></div>
+                  </motion.div>
+                </div>
+              </motion.div>
+
               <motion.h1 
                 className="text-5xl md:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-white leading-tight"
                 initial={{ scale: 0.5, opacity: 0 }}
