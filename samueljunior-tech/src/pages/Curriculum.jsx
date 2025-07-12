@@ -329,7 +329,19 @@ const Curriculum = () => {
                     <div 
                       key={index} 
                       className="p-4 bg-white/5 print:bg-gray-50 rounded-lg border border-white/10 print:border-gray-300 print:cursor-default cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-purple-500/50 print:hover:bg-gray-50 print:hover:border-gray-300 group"
-                      onClick={() => !window.matchMedia('print').matches && navigate('/projects')}
+                      onClick={() => {
+                        if (!window.matchMedia('print').matches) {
+                          navigate(`/projects?project=${encodeURIComponent(project.name)}`)
+                        }
+                      }}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if ((e.key === 'Enter' || e.key === ' ') && !window.matchMedia('print').matches) {
+                          e.preventDefault()
+                          navigate(`/projects?project=${encodeURIComponent(project.name)}`)
+                        }
+                      }}
                     >
                       <div className="flex items-start justify-between mb-2">
                         <h4 className="font-semibold text-white print:text-black group-hover:text-purple-300 print:group-hover:text-black transition-colors">{project.name}</h4>
@@ -351,7 +363,7 @@ const Curriculum = () => {
                 </div>
                 <div className="mt-6 text-center print:hidden">
                   <p className="text-gray-400 text-sm mb-3">
-                    Clique em qualquer projeto para ver mais detalhes na página de projetos
+                    Clique em qualquer projeto para ver mais detalhes e abrir o modal específico na página de projetos
                   </p>
                 </div>
               </Card>

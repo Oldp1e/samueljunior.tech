@@ -1,9 +1,37 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ExternalLink, Github, Calendar, Tag } from 'lucide-react'
+import { useEffect } from 'react'
 import Button from './ui/Button'
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
+  // Adiciona listener para tecla ESC
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose()
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape)
+      // Previne scroll do body quando modal está aberto
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen, onClose])
+
   if (!project) return null
+
+  const handleBackdropClick = (e) => {
+    // Só fecha se o clique foi no backdrop, não no conteúdo do modal
+    if (e.target === e.currentTarget) {
+      onClose()
+    }
+  }
 
   return (
     <AnimatePresence>
@@ -13,7 +41,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          onClick={onClose}
+          onClick={handleBackdropClick}
         >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />

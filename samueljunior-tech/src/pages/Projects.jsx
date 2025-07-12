@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, Play, Filter, Search } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import YouTubePlayer from '../components/YouTubePlayer'
@@ -9,11 +9,14 @@ import ProjectModal from '../components/ProjectModal'
 
 const Projects = () => {
   const navigate = useNavigate()
+  const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams()
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   const [currentVideo, setCurrentVideo] = useState(null)
   const [selectedProject, setSelectedProject] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [hasOpenedFromUrl, setHasOpenedFromUrl] = useState(false)
 
   const categories = [
     { id: 'all', label: 'Todos', count: 12 },
@@ -232,7 +235,40 @@ const Projects = () => {
   const closeProjectModal = () => {
     setIsModalOpen(false)
     setSelectedProject(null)
+    setHasOpenedFromUrl(false)
+    
+    // Remove o parâmetro da URL se ainda existir
+    const projectParam = searchParams.get('project')
+    if (projectParam) {
+      // Usa replace ao invés de push para não criar histórico extra
+      navigate(location.pathname, { replace: true })
+    }
   }
+
+  // Effect para abrir modal automaticamente com base na URL
+  useEffect(() => {
+    const projectName = searchParams.get('project')
+    
+    if (!projectName) {
+      // Reset do estado se não há parâmetro na URL
+      setHasOpenedFromUrl(false)
+      return
+    }
+    
+    // Só executa se há um parâmetro, não abriu ainda e tem projetos carregados
+    if (!hasOpenedFromUrl && projects.length > 0 && !isModalOpen) {
+      // Busca case-insensitive por nome do projeto
+      const project = projects.find(p => 
+        p.title.toLowerCase() === projectName.toLowerCase()
+      )
+      
+      if (project) {
+        setHasOpenedFromUrl(true)
+        setSelectedProject(project)
+        setIsModalOpen(true)
+      }
+    }
+  }, [searchParams, projects, hasOpenedFromUrl, isModalOpen])
 
   return (
     <div className="min-h-screen pt-24">
