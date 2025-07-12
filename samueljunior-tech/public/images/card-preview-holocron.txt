@@ -1,0 +1,17 @@
+PLACEHOLDER para holocron-databank.png
+
+Descrição da imagem necessária:
+- Screenshot do projeto Holocron Databank
+- Deve mostrar a interface holográfica do Star Wars
+- Preferência por tela inicial ou dashboard principal
+- Elementos visuais: glassmorphism, efeitos de luz azul/roxa, interface sci-fi
+- Resolução: 400x250 pixels (proporção 16:10)
+- Formato: PNG para melhor qualidade dos efeitos de transparência
+- Tamanho máximo: 500KB
+
+Características visuais do projeto:
+- Design holográfico com glassmorphism
+- Paleta: azul claro, roxo, ciano, preto espacial
+- Interface inspirada em Star Wars
+- Efeitos de luz e gradientes sci-fi
+- Cards com informações de Jedi/Sith/Relíquias

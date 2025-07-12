@@ -9,6 +9,8 @@ Coloque as seguintes imagens nesta pasta:
 - cybersecurity-dashboard.jpg (para o projeto Cybersecurity Dashboard)
 - rpg-plugin.jpg (para o projeto RPG Maker Plugin)
 - weather-app.jpg (para o projeto Weather App)
+- dino-encyclopedia.png (para o projeto Dino Encyclopedia - Sandbox)
+- holocron-databank.png (para o projeto Holocron Databank - Sandbox)
 
 ## Recomendações:
 - Resolução: 400x250 pixels ou proporção 16:10

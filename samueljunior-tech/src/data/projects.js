@@ -239,11 +239,36 @@ export const sandboxProjects = [
     githubUrl: 'https://github.com/Oldp1e/DinoEncyclopedia',
     liveUrl: 'https://dino-encyclopedia-mu.vercel.app/',
     vercelUrl: 'https://vercel.com/samuel-juniors-projects-5e157e6a/dino-encyclopedia',
-    image: 'dino-encyclopedia.png',
+    image: 'dino.png',
     category: 'sandbox',
     theme: {
       colors: ['Verde musgo', 'Dourado', 'Marrom', 'Cinza rocha', 'Vermelho alerta'],
       style: 'Glassmorphism com tema Jurassic Park'
+    }
+  },
+  {
+    id: 'holocron-databank',
+    title: 'Holocron Databank',
+    description: 'Banco de dados fictício inspirado no universo Star Wars, simulando uma interface holográfica e tecnológica de um Holocron Jedi/Sith.',
+    technologies: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'App Router'],
+    features: [
+      'Design system holográfico com glassmorphism',
+      'Sistema de arquivo com categorias (Jedi, Sith, Relíquias)',
+      'Filtros avançados por era, alinhamento e raridade',
+      'Sistema de raridade: Comum, Raro, Lendário, Proibido',
+      'Interface responsiva com efeitos visuais avançados',
+      'Controle de acesso para conteúdo sensível',
+      'Animações fluidas e microinterações',
+      'Efeitos holográficos e partículas de fundo'
+    ],
+    githubUrl: 'https://github.com/Oldp1e/HolocronDatabank',
+    liveUrl: 'https://holocron-databank.vercel.app/',
+    vercelUrl: 'https://vercel.com/samuel-juniors-projects-5e157e6a/holocron-databank',
+    image: 'holocron.png',
+    category: 'sandbox',
+    theme: {
+      colors: ['Azul claro', 'Roxo', 'Ciano', 'Preto espacial', 'Azul escuro'],
+      style: 'Glassmorphism com tema Star Wars holográfico'
     }
   }
 ]

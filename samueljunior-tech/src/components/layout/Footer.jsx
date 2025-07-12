@@ -67,7 +67,7 @@ const Footer = () => {
 
             {/* Right side - Copyright */}
             <div className="text-center xl:text-right">
-              <p className="text-gray-400 text-sm xl:text-base flex items-center justify-center xl:justify-end space-x-1">
+              <div className="text-gray-400 text-sm xl:text-base flex items-center justify-center xl:justify-end space-x-1">
                 <span>Feito com</span>
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
@@ -76,7 +76,7 @@ const Footer = () => {
                   <Heart className="w-4 h-4 xl:w-5 xl:h-5 text-red-500 fill-current" />
                 </motion.div>
                 <span>© 2025</span>
-              </p>
+              </div>
               <p className="text-gray-500 text-xs xl:text-sm mt-1">
                 Tropical Pixel Studios
               </p>

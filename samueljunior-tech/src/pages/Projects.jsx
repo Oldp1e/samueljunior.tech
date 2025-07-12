@@ -6,6 +6,7 @@ import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import YouTubePlayer from '../components/YouTubePlayer'
 import ProjectModal from '../components/ProjectModal'
+import SandboxModal from '../components/SandboxModal'
 import useHotjar from '../hooks/useHotjar'
 import { HOTJAR_CONFIG } from '../config/hotjar'
 import { projects, categories, getFeaturedProjects, getProjectsByCategory, sandboxProjects } from '../data/projects'
@@ -19,6 +20,8 @@ const Projects = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentVideo, setCurrentVideo] = useState(null)
   const [urlProjectProcessed, setUrlProjectProcessed] = useState(false)
+  const [selectedSandboxProject, setSelectedSandboxProject] = useState(null)
+  const [isSandboxModalOpen, setIsSandboxModalOpen] = useState(false)
 
   // Hook centralizado para gerenciar modais
   const {
@@ -57,6 +60,17 @@ const Projects = () => {
       // Usa replace ao invés de push para não criar histórico extra
       navigate(location.pathname, { replace: true })
     }
+  }
+
+  const openSandboxModal = (project) => {
+    setSelectedSandboxProject(project)
+    setIsSandboxModalOpen(true)
+    triggerEvent(`sandbox_modal_open_${project.id}`)
+  }
+
+  const closeSandboxModal = () => {
+    setSelectedSandboxProject(null)
+    setIsSandboxModalOpen(false)
   }
 
   // Effect para abrir modal automaticamente com base na URL
@@ -302,43 +316,6 @@ const Projects = () => {
             </Button>
           </motion.div>
         )}
-
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-20"
-        >
-          <Card className="p-12 text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Gostou do que viu?
-            </h2>
-            <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-              Vamos trabalhar juntos no seu próximo projeto e criar algo incrível
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <Button 
-                size="lg"
-                onClick={() => {
-                  navigate('/contact')
-                  triggerEvent('projects_cta_contact')
-                }}
-              >
-                Iniciar Projeto
-              </Button>
-              <Button 
-                variant="secondary" 
-                size="lg"
-                href="https://github.com/Oldp1e"
-                onClick={() => triggerEvent('projects_cta_github')}
-              >
-                Ver Mais no GitHub
-              </Button>
-            </div>
-          </Card>
-        </motion.div>
         </div>
       </div>
 
@@ -374,7 +351,7 @@ const Projects = () => {
                 viewport={{ once: true }}
                 className="group"
               >
-                <Card className="overflow-hidden h-full hover:transform hover:scale-105 transition-all duration-300">
+                <Card className="overflow-hidden h-full hover:transform hover:scale-105 transition-all duration-300 cursor-pointer" onClick={() => openSandboxModal(project)}>
                   {/* Project Header */}
                   <div className="relative overflow-hidden h-48">
                     <div className="w-full h-full bg-gradient-to-br from-green-500/20 to-amber-500/20 flex items-center justify-center relative">
@@ -470,7 +447,7 @@ const Projects = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex space-x-3">
+                    <div className="flex space-x-3" onClick={(e) => e.stopPropagation()}>
                       <Button 
                         variant="secondary" 
                         size="sm"
@@ -511,26 +488,45 @@ const Projects = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* More Sandbox Projects CTA */}
+      {/* Call to Action */}
+      <section className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-20">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mt-12"
           >
-            <p className="text-gray-400 mb-4">
-              Mais experimentos e protótipos estão sempre sendo criados
-            </p>
-            <Button 
-              variant="secondary" 
-              size="lg"
-              href="https://github.com/Oldp1e?tab=repositories"
-              onClick={() => triggerEvent('sandbox_more_projects')}
-            >
-              Ver Todos os Experimentos
-            </Button>
+            <Card className="p-12 text-center">
+              <h2 className="text-3xl font-bold text-white mb-4">
+                Gostou do que viu?
+              </h2>
+              <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+                Vamos trabalhar juntos no seu próximo projeto e criar algo incrível
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <Button 
+                  size="lg"
+                  onClick={() => {
+                    navigate('/contact')
+                    triggerEvent('projects_cta_contact')
+                  }}
+                >
+                  Iniciar Projeto
+                </Button>
+                <Button 
+                  variant="secondary" 
+                  size="lg"
+                  href="https://github.com/Oldp1e"
+                  onClick={() => triggerEvent('projects_cta_github')}
+                >
+                  Ver Mais no GitHub
+                </Button>
+              </div>
+            </Card>
           </motion.div>
         </div>
       </section>
@@ -548,6 +544,13 @@ const Projects = () => {
         project={selectedProject}
         isOpen={isModalOpen}
         onClose={closeProjectModalWithNavigation}
+      />
+
+      {/* Sandbox Project Modal */}
+      <SandboxModal 
+        project={selectedSandboxProject}
+        isOpen={isSandboxModalOpen}
+        onClose={closeSandboxModal}
       />
     </div>
   )
