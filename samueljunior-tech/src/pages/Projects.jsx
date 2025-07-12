@@ -16,7 +16,7 @@ const Projects = () => {
   const [currentVideo, setCurrentVideo] = useState(null)
   const [selectedProject, setSelectedProject] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [hasOpenedFromUrl, setHasOpenedFromUrl] = useState(false)
+  const [urlProjectProcessed, setUrlProjectProcessed] = useState(false)
 
   const categories = [
     { id: 'all', label: 'Todos', count: 12 },
@@ -235,7 +235,6 @@ const Projects = () => {
   const closeProjectModal = () => {
     setIsModalOpen(false)
     setSelectedProject(null)
-    setHasOpenedFromUrl(false)
     
     // Remove o parâmetro da URL se ainda existir
     const projectParam = searchParams.get('project')
@@ -249,26 +248,29 @@ const Projects = () => {
   useEffect(() => {
     const projectName = searchParams.get('project')
     
-    if (!projectName) {
-      // Reset do estado se não há parâmetro na URL
-      setHasOpenedFromUrl(false)
-      return
-    }
-    
-    // Só executa se há um parâmetro, não abriu ainda e tem projetos carregados
-    if (!hasOpenedFromUrl && projects.length > 0 && !isModalOpen) {
+    if (projectName && !urlProjectProcessed && projects.length > 0) {
       // Busca case-insensitive por nome do projeto
       const project = projects.find(p => 
         p.title.toLowerCase() === projectName.toLowerCase()
       )
       
       if (project) {
-        setHasOpenedFromUrl(true)
+        setUrlProjectProcessed(true)
         setSelectedProject(project)
         setIsModalOpen(true)
+        
+        // Remove o parâmetro da URL imediatamente após abrir
+        setTimeout(() => {
+          navigate(location.pathname, { replace: true })
+        }, 100)
       }
     }
-  }, [searchParams, projects, hasOpenedFromUrl, isModalOpen])
+    
+    // Reset quando não há parâmetro de projeto na URL
+    if (!projectName) {
+      setUrlProjectProcessed(false)
+    }
+  }, [searchParams, projects, urlProjectProcessed, navigate, location.pathname])
 
   return (
     <div className="min-h-screen pt-24">
