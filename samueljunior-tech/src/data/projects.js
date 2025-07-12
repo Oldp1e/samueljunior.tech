@@ -221,6 +221,33 @@ export const projects = [
   }
 ]
 
+// Projetos Sandbox - Experimentos e protótipos
+export const sandboxProjects = [
+  {
+    id: 'dino-encyclopedia',
+    title: 'Dino Encyclopedia',
+    description: 'Site temático do Jurassic Park com enciclopédia de dinossauros, sistema de segurança e monitoramento em tempo real.',
+    technologies: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Radix UI'],
+    features: [
+      'Enciclopédia completa com 8+ espécies de dinossauros',
+      'Sistema de segurança com dashboard em tempo real',
+      'Filtros avançados por período, dieta e nível de perigo',
+      'Design system com tema Jurassic Park',
+      'Glassmorphism e animações fluidas',
+      'Alertas de emergência e monitoramento'
+    ],
+    githubUrl: 'https://github.com/Oldp1e/DinoEncyclopedia',
+    liveUrl: 'https://dino-encyclopedia-mu.vercel.app/',
+    vercelUrl: 'https://vercel.com/samuel-juniors-projects-5e157e6a/dino-encyclopedia',
+    image: 'dino-encyclopedia.png',
+    category: 'sandbox',
+    theme: {
+      colors: ['Verde musgo', 'Dourado', 'Marrom', 'Cinza rocha', 'Vermelho alerta'],
+      style: 'Glassmorphism com tema Jurassic Park'
+    }
+  }
+]
+
 // Funções auxiliares para filtrar projetos
 export const getFeaturedProjects = () => {
   return projects.filter(project => project.featured)

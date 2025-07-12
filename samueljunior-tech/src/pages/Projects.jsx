@@ -8,7 +8,7 @@ import YouTubePlayer from '../components/YouTubePlayer'
 import ProjectModal from '../components/ProjectModal'
 import useHotjar from '../hooks/useHotjar'
 import { HOTJAR_CONFIG } from '../config/hotjar'
-import { projects, categories, getFeaturedProjects, getProjectsByCategory } from '../data/projects'
+import { projects, categories, getFeaturedProjects, getProjectsByCategory, sandboxProjects } from '../data/projects'
 import { useProjectModal } from '../hooks/useProjectModal'
 
 const Projects = () => {
@@ -341,6 +341,199 @@ const Projects = () => {
         </motion.div>
         </div>
       </div>
+
+      {/* Sandbox Projects Section */}
+      <section className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-20 bg-gradient-to-b from-transparent to-purple-900/10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30 mb-6">
+              <Play className="w-4 h-4" />
+              <span>Projetos Experimentais</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-4">
+              Sandbox & <span className="gradient-text">Experimentos</span>
+            </h2>
+            <p className="text-gray-400 text-lg xl:text-xl max-w-3xl mx-auto">
+              Projetos experimentais e protótipos criados para explorar novas tecnologias e conceitos
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {sandboxProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Card className="overflow-hidden h-full hover:transform hover:scale-105 transition-all duration-300">
+                  {/* Project Header */}
+                  <div className="relative overflow-hidden h-48">
+                    <div className="w-full h-full bg-gradient-to-br from-green-500/20 to-amber-500/20 flex items-center justify-center relative">
+                      <img
+                        src={`/images/${project.image}`}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        onError={(e) => {
+                          e.target.style.display = 'none'
+                          e.target.nextSibling.style.display = 'flex'
+                        }}
+                      />
+                      {/* Fallback with project icon */}
+                      <div className="w-full h-full bg-gradient-to-br from-green-500/30 to-amber-500/30 flex items-center justify-center text-white text-6xl font-bold hidden">
+                        🦕
+                      </div>
+                      
+                      {/* Sandbox Badge */}
+                      <div className="absolute top-4 left-4">
+                        <div className="flex items-center space-x-1 px-3 py-1 bg-gradient-to-r from-green-400 to-emerald-500 text-white text-xs font-bold rounded-full">
+                          <Play className="w-3 h-3" />
+                          <span>Sandbox</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Project Content */}
+                  <div className="p-6">
+                    <div className="mb-3">
+                      <span className="text-xs text-green-400 font-medium uppercase tracking-wide">
+                        Projeto Experimental
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-green-300 transition-colors">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-gray-400 text-sm mb-4">
+                      {project.description}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-2 py-1 bg-green-500/10 text-green-300 rounded text-xs border border-green-500/30"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 4 && (
+                        <span className="px-2 py-1 bg-green-500/10 text-green-300 rounded text-xs border border-green-500/30">
+                          +{project.technologies.length - 4}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Features Preview */}
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold text-white mb-2">🚀 Principais Features:</h4>
+                      <ul className="text-xs text-gray-400 space-y-1">
+                        {project.features.slice(0, 3).map((feature, idx) => (
+                          <li key={idx} className="flex items-start space-x-2">
+                            <span className="w-1 h-1 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                        {project.features.length > 3 && (
+                          <li className="text-green-400 text-xs">+{project.features.length - 3} mais features...</li>
+                        )}
+                      </ul>
+                    </div>
+
+                    {/* GitHub Embed Style Info */}
+                    <div className="mb-6 p-3 bg-white/5 rounded-lg border border-white/10">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <Github className="w-4 h-4 text-gray-400" />
+                        <span className="text-xs text-gray-400 font-medium">Repository Info</span>
+                      </div>
+                      <div className="text-xs text-gray-300">
+                        <div className="flex justify-between items-center mb-1">
+                          <span>Status:</span>
+                          <span className="text-green-400">🟢 Active</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span>Deploy:</span>
+                          <span className="text-blue-400">📦 Vercel</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex space-x-3">
+                      <Button 
+                        variant="secondary" 
+                        size="sm"
+                        href={project.liveUrl}
+                        className="flex-1 group border-green-500/30 hover:bg-green-500/20"
+                        onClick={() => triggerEvent(`sandbox_live_${project.id}`)}
+                      >
+                        <span className="flex items-center justify-center space-x-2">
+                          <ExternalLink className="w-4 h-4" />
+                          <span>Live Demo</span>
+                        </span>
+                      </Button>
+                      
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        href={project.githubUrl}
+                        className="flex items-center justify-center hover:bg-white/10"
+                        onClick={() => triggerEvent(`sandbox_github_${project.id}`)}
+                      >
+                        <Github className="w-4 h-4" />
+                      </Button>
+
+                      {project.vercelUrl && (
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          href={project.vercelUrl}
+                          className="flex items-center justify-center hover:bg-blue-500/20 text-blue-400"
+                          onClick={() => triggerEvent(`sandbox_vercel_${project.id}`)}
+                        >
+                          <span className="text-xs font-bold">▲</span>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* More Sandbox Projects CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <p className="text-gray-400 mb-4">
+              Mais experimentos e protótipos estão sempre sendo criados
+            </p>
+            <Button 
+              variant="secondary" 
+              size="lg"
+              href="https://github.com/Oldp1e?tab=repositories"
+              onClick={() => triggerEvent('sandbox_more_projects')}
+            >
+              Ver Todos os Experimentos
+            </Button>
+          </motion.div>
+        </div>
+      </section>
       
       {/* YouTube Player Modal */}
       {currentVideo && (
