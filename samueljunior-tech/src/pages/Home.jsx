@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, Download, Github, Linkedin, Play, Code, Gamepad2, Shield, Server, Database, Cog } from 'lucide-react'
+import { ArrowRight, Download, Github, Linkedin, Play, Code, Gamepad2, Shield, Server, Database, Cog, Eye } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 
@@ -109,9 +109,9 @@ const Home = () => {
               </Button>
               
               <Button variant="secondary" size="lg" className="group" onClick={() => navigate('/curriculum')}>
-                <span className="flex items-center space-x-2">
-                  <Download className="w-5 h-5" />
-                  <span>Currículo</span>
+                <span className="flex items-center space-x-2">                  
+                  <Eye className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <span>Ver Currículo</span>
                 </span>
               </Button>
             </motion.div>

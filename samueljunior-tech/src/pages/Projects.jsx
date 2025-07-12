@@ -6,6 +6,8 @@ import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import YouTubePlayer from '../components/YouTubePlayer'
 import ProjectModal from '../components/ProjectModal'
+import useHotjar from '../hooks/useHotjar'
+import { HOTJAR_CONFIG } from '../config/hotjar'
 
 const Projects = () => {
   const navigate = useNavigate()
@@ -17,6 +19,13 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [urlProjectProcessed, setUrlProjectProcessed] = useState(false)
+
+  // Hook do Hotjar para rastreamento
+  const { triggerEvent } = useHotjar(
+    HOTJAR_CONFIG.SITE_ID,
+    HOTJAR_CONFIG.VERSION,
+    HOTJAR_CONFIG.DEBUG
+  )
 
   const categories = [
     { id: 'all', label: 'Todos', count: 6 },
@@ -257,6 +266,7 @@ const Projects = () => {
   const openProjectModal = (project) => {
     setSelectedProject(project)
     setIsModalOpen(true)
+    triggerEvent(`project_modal_open_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
   }
 
   const closeProjectModal = () => {
@@ -366,7 +376,10 @@ const Projects = () => {
                       key={category.id}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => setSelectedCategory(category.id)}
+                      onClick={() => {
+                        setSelectedCategory(category.id)
+                        triggerEvent(`projects_filter_${category.id}`)
+                      }}
                       className={`px-4 py-2 rounded-lg transition-all duration-300 ${
                         selectedCategory === category.id
                           ? 'bg-purple-500 text-white'
@@ -407,7 +420,13 @@ const Projects = () => {
                       className="w-full h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center cursor-pointer relative"
                       onClick={(e) => {
                         e.stopPropagation()
-                        project.videoUrl && setCurrentVideo(project.videoUrl)
+                        // Se tem vídeo, abre o vídeo; senão, abre o modal
+                        if (project.videoUrl) {
+                          setCurrentVideo(project.videoUrl)
+                          triggerEvent(`project_video_play_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
+                        } else {
+                          openProjectModal(project)
+                        }
                       }}
                     >
                       {/* Tentar carregar a imagem, fallback para gradiente */}
@@ -481,6 +500,10 @@ const Projects = () => {
                           size="sm"
                           href={project.liveUrl}
                           className="flex-1 group"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            triggerEvent(`project_demo_click_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
+                          }}
                         >
                           <span className="flex items-center justify-center space-x-2">
                             <ExternalLink className="w-4 h-4" />
@@ -495,6 +518,10 @@ const Projects = () => {
                           size="sm"
                           href={project.githubUrl}
                           className="flex items-center justify-center"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            triggerEvent(`project_github_click_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
+                          }}
                         >
                           <Github className="w-4 h-4" />
                         </Button>
@@ -522,6 +549,7 @@ const Projects = () => {
               onClick={() => {
                 setSelectedCategory('all')
                 setSearchTerm('')
+                triggerEvent('projects_clear_filters')
               }}
             >
               Limpar Filtros
@@ -547,7 +575,10 @@ const Projects = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Button 
                 size="lg"
-                onClick={() => navigate('/contact')}
+                onClick={() => {
+                  navigate('/contact')
+                  triggerEvent('projects_cta_contact')
+                }}
               >
                 Iniciar Projeto
               </Button>
@@ -555,6 +586,7 @@ const Projects = () => {
                 variant="secondary" 
                 size="lg"
                 href="https://github.com/Oldp1e"
+                onClick={() => triggerEvent('projects_cta_github')}
               >
                 Ver Mais no GitHub
               </Button>

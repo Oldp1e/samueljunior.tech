@@ -3,6 +3,9 @@ import { AnimatePresence } from 'framer-motion'
 import Layout from './components/layout/Layout'
 import ScrollToTop from './components/ScrollToTop'
 import HotjarEvents from './components/HotjarEvents'
+import OpenGraphMeta from './components/OpenGraphMeta'
+import DynamicOGImage from './components/DynamicOGImage'
+import StructuredData from './components/StructuredData'
 import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
@@ -31,6 +34,9 @@ function App() {
     <Router>
       <ScrollToTop />
       <HotjarEvents />
+      <OpenGraphMeta />
+      <DynamicOGImage />
+      <StructuredData />
       <Layout>
         <AnimatePresence mode="wait">
           <Routes>
