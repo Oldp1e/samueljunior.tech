@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Quote, Linkedin, Star, ChevronLeft, ChevronRight, Filter } from 'lucide-react'
 import Card from '../components/ui/Card'
@@ -7,6 +7,7 @@ import Button from '../components/ui/Button'
 const Testimonials = () => {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [currentPage, setCurrentPage] = useState(0)
+  const testimonialsGridRef = useRef(null)
 
   const categories = [
     { id: 'all', label: 'Todos', count: 6 },
@@ -109,12 +110,30 @@ const Testimonials = () => {
   const nextPage = () => {
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1)
+      // Usar setTimeout para garantir que o estado seja atualizado antes do scroll
+      setTimeout(() => {
+        scrollToTestimonials()
+      }, 200)
     }
   }
 
   const prevPage = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1)
+      // Usar setTimeout para garantir que o estado seja atualizado antes do scroll
+      setTimeout(() => {
+        scrollToTestimonials()
+      }, 200)
+    }
+  }
+
+  const scrollToTestimonials = () => {
+    if (testimonialsGridRef.current) {
+      testimonialsGridRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      })
     }
   }
 
@@ -122,6 +141,10 @@ const Testimonials = () => {
   const handleCategoryChange = (categoryId) => {
     setSelectedCategory(categoryId)
     setCurrentPage(0)
+    // Delay para garantir que o conteúdo seja renderizado antes do scroll
+    setTimeout(() => {
+      scrollToTestimonials()
+    }, 200)
   }
 
   return (
@@ -205,6 +228,7 @@ const Testimonials = () => {
           {/* Testimonials Grid */}
           <AnimatePresence mode="wait">
             <motion.div
+              ref={testimonialsGridRef}
               key={selectedCategory + currentPage}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -327,7 +351,13 @@ const Testimonials = () => {
                 {[...Array(totalPages)].map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentPage(index)}
+                    onClick={() => {
+                      setCurrentPage(index)
+                      // Usar setTimeout para garantir que o estado seja atualizado antes do scroll
+                      setTimeout(() => {
+                        scrollToTestimonials()
+                      }, 200)
+                    }}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
                       currentPage === index
                         ? 'bg-purple-500'
