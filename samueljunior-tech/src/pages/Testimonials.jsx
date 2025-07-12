@@ -188,42 +188,7 @@ const Testimonials = () => {
               <div className="text-3xl font-bold text-white mb-2">100%</div>
               <div className="text-gray-400">Satisfação</div>
             </Card>
-          </motion.div>
-
-          {/* Filters */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-12"
-          >
-            <Card className="p-6">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-                <div className="flex items-center space-x-2">
-                  <Filter className="text-gray-400 w-5 h-5" />
-                  <span className="text-white font-medium">Filtrar por:</span>
-                </div>
-                
-                <div className="flex flex-wrap gap-2">
-                  {categories.map((category) => (
-                    <motion.button
-                      key={category.id}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleCategoryChange(category.id)}
-                      className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                        selectedCategory === category.id
-                          ? 'bg-purple-500 text-white'
-                          : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                      }`}
-                    >
-                      {category.label} ({category.count})
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
-            </Card>
-          </motion.div>
+          </motion.div>          
 
           {/* Testimonials Grid */}
           <AnimatePresence mode="wait">
