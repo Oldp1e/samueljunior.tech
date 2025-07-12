@@ -266,6 +266,10 @@ const Projects = () => {
   const openProjectModal = (project) => {
     setSelectedProject(project)
     setIsModalOpen(true)
+    
+    // Adiciona um estado ao histórico quando abre o modal
+    window.history.pushState({ modalOpen: true }, '', '')
+    
     triggerEvent(`project_modal_open_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
   }
 
@@ -280,6 +284,27 @@ const Projects = () => {
       navigate(location.pathname, { replace: true })
     }
   }
+
+  // Effect para gerenciar o botão de voltar
+  useEffect(() => {
+    const handlePopState = (event) => {
+      if (isModalOpen) {
+        // Se o modal está aberto, fecha ele em vez de navegar
+        event.preventDefault()
+        closeProjectModal()
+      }
+    }
+
+    // Adiciona o listener quando o modal está aberto
+    if (isModalOpen) {
+      window.addEventListener('popstate', handlePopState)
+    }
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+    }
+  }, [isModalOpen])
 
   // Effect para abrir modal automaticamente com base na URL
   useEffect(() => {
@@ -313,6 +338,9 @@ const Projects = () => {
         setUrlProjectProcessed(true)
         setSelectedProject(project)
         setIsModalOpen(true)
+        
+        // Adiciona estado ao histórico para o modal aberto via URL
+        window.history.replaceState({ modalOpen: true }, '', '')
         
         // Remove o parâmetro da URL imediatamente após abrir
         setTimeout(() => {
