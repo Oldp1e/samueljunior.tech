@@ -372,56 +372,7 @@ const Projects = () => {
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Uma seleção dos meus trabalhos mais recentes e projetos destacados
           </p>
-        </motion.div>
-
-        {/* Filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-12"
-        >
-          <Card className="p-6">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-              {/* Search */}
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Buscar projetos..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors"
-                />
-              </div>
-
-              {/* Category Filters */}
-              <div className="flex items-center space-x-2">
-                <Filter className="text-gray-400 w-5 h-5" />
-                <div className="flex space-x-2">
-                  {categories.map((category) => (
-                    <motion.button
-                      key={category.id}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => {
-                        setSelectedCategory(category.id)
-                        triggerEvent(`projects_filter_${category.id}`)
-                      }}
-                      className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                        selectedCategory === category.id
-                          ? 'bg-purple-500 text-white'
-                          : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                      }`}
-                    >
-                      {category.label} ({category.count})
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Card>
-        </motion.div>
+        </motion.div>     
 
         {/* Projects Grid */}
         <AnimatePresence mode="wait">

@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion'
 import { Calendar, MapPin, Coffee, Code, Award, Users, Building } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import Card from '../components/ui/Card'
+import Button from '../components/ui/Button'
 
 const About = () => {
+  const navigate = useNavigate()
+  
  const experiences = [
     {
       year: '2025 - Atual',
@@ -251,6 +255,40 @@ const About = () => {
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mt-20"
+        >
+          <Card className="p-12 text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Que tal conversarmos sobre seu próximo projeto?
+            </h2>
+            <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+              Estou sempre em busca de novos desafios e oportunidades para criar soluções inovadoras. 
+              Vamos transformar suas ideias em realidade!
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <Button 
+                size="lg"
+                onClick={() => navigate('/contact')}
+              >
+                Vamos Conversar
+              </Button>
+              <Button 
+                variant="secondary" 
+                size="lg"
+                href="https://www.linkedin.com/in/samuel-lima-analista-ti/"
+              >
+                Conectar no LinkedIn
+              </Button>
+            </div>
+          </Card>
         </motion.div>
         </div>
       </div>

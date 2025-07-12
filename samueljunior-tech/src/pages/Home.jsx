@@ -1,11 +1,44 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, Download, Github, Linkedin, Play, Code, Gamepad2, Shield, Server, Database, Cog, Eye } from 'lucide-react'
+import { ArrowRight, Download, Github, Linkedin, Play, Code, Gamepad2, Shield, Server, Database, Cog, Eye, ExternalLink, Star } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 
 const Home = () => {
   const navigate = useNavigate()
+  
+  // Projetos em destaque
+  const featuredProjects = [
+    {
+      id: 1,
+      title: 'Outdoors Adventures Malta API',
+      description: 'API completa para sistema de aluguel de embarcações e esportes aquáticos com reservas, pagamentos via Stripe e painel administrativo.',
+      image: 'outdoors.png',
+      technologies: ['PHP', 'SQL', 'JWT', 'Stripe API'],
+      liveUrl: 'https://outdooradventuresmalta.com/',
+      category: 'Backend & API'
+    },
+    {
+      id: 2,
+      title: 'Easy Bid',
+      description: 'Plataforma de cotações fáceis com prompts via IA para otimizar processos com sistema de controle.',
+      image: 'login.png',
+      technologies: ['React', 'Node.js', 'AI'],
+      githubUrl: 'https://github.com/Oldp1e/easybid/',
+      category: 'Full Stack & AI'
+    },
+    {
+      id: 4,
+      title: 'Entity Strike',
+      description: 'Jogo estilo Survivors onde o player deve sobreviver a hordas de inimigos.',
+      image: 'store_capsule_header.jpg',
+      technologies: ['Unity', 'C#', '2D'],
+      liveUrl: 'https://store.steampowered.com/app/3685980/Entity_Strike/',
+      liveUrlText: 'Steam',
+      videoUrl: 'https://www.youtube.com/watch?v=wzA4JLpE3ts',
+      category: 'Game Development'
+    }
+  ]
   
   const skills = [
     { 
@@ -189,6 +222,154 @@ const Home = () => {
               )
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Featured Projects Section */}
+      <section className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-20 2xl:py-32">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-4">
+              Projetos em <span className="gradient-text">Destaque</span>
+            </h2>
+            <p className="text-gray-400 text-lg xl:text-xl max-w-3xl mx-auto">
+              Uma seleção dos meus trabalhos mais impactantes e inovadores
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {featuredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Card className="overflow-hidden h-full hover:transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                      onClick={() => navigate('/projects')}>
+                  {/* Project Image */}
+                  <div className="relative overflow-hidden h-48">
+                    <div className="w-full h-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center relative">
+                      <img
+                        src={`/images/${project.image}`}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        onError={(e) => {
+                          e.target.style.display = 'none'
+                        }}
+                      />
+                      {/* Overlay with play icon for video projects */}
+                      {project.videoUrl && (
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                            <Play className="w-8 h-8 text-white ml-1" />
+                          </div>
+                        </div>
+                      )}
+                      {/* Featured Badge */}
+                      <div className="absolute top-4 right-4">
+                        <div className="flex items-center space-x-1 px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-bold rounded-full">
+                          <Star className="w-3 h-3" />
+                          <span>Destaque</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Project Content */}
+                  <div className="p-6">
+                    <div className="mb-3">
+                      <span className="text-xs text-purple-400 font-medium uppercase tracking-wide">
+                        {project.category}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.technologies.slice(0, 3).map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-2 py-1 bg-white/10 text-gray-300 rounded text-xs border border-white/20"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <span className="px-2 py-1 bg-white/10 text-gray-300 rounded text-xs border border-white/20">
+                          +{project.technologies.length - 3}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex space-x-3" onClick={(e) => e.stopPropagation()}>
+                      {project.liveUrl && (
+                        <Button 
+                          variant="secondary" 
+                          size="sm"
+                          href={project.liveUrl}
+                          className="flex-1 group"
+                        >
+                          <span className="flex items-center justify-center space-x-2">
+                            <ExternalLink className="w-4 h-4" />
+                            <span>{project.liveUrlText || 'Demo'}</span>
+                          </span>
+                        </Button>
+                      )}
+                      
+                      {project.githubUrl && (
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          href={project.githubUrl}
+                          className="flex items-center justify-center"
+                        >
+                          <Github className="w-4 h-4" />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* View All Projects Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Button 
+              variant="secondary" 
+              size="lg" 
+              className="group"
+              onClick={() => navigate('/projects')}
+            >
+              <span className="flex items-center space-x-2">
+                <span>Ver Todos os Projetos</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Button>
+          </motion.div>
         </div>
       </section>
 
