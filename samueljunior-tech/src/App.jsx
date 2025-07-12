@@ -2,18 +2,35 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Layout from './components/layout/Layout'
 import ScrollToTop from './components/ScrollToTop'
+import HotjarEvents from './components/HotjarEvents'
 import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import Testimonials from './pages/Testimonials'
 import Contact from './pages/Contact'
 import Curriculum from './pages/Curriculum'
+import useHotjar from './hooks/useHotjar'
+import { HOTJAR_CONFIG, isHotjarConfigured } from './config/hotjar'
 import './App.css'
 
 function App() {
+  // Inicializar Hotjar
+  const { triggerEvent, addTags } = useHotjar(
+    HOTJAR_CONFIG.SITE_ID,
+    HOTJAR_CONFIG.VERSION,
+    HOTJAR_CONFIG.DEBUG
+  )
+
+  // Log para desenvolvimento
+  if (HOTJAR_CONFIG.DEBUG && isHotjarConfigured()) {
+    console.log('Hotjar está configurado e ativo')
+  } else if (!isHotjarConfigured()) {
+    console.warn('Hotjar não está configurado. Verifique as variáveis de ambiente.')
+  }
   return (
     <Router>
       <ScrollToTop />
+      <HotjarEvents />
       <Layout>
         <AnimatePresence mode="wait">
           <Routes>

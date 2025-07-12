@@ -3,11 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Quote, Linkedin, Star, ChevronLeft, ChevronRight, Filter } from 'lucide-react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
+import useHotjar from '../hooks/useHotjar'
+import { HOTJAR_CONFIG } from '../config/hotjar'
 
 const Testimonials = () => {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [currentPage, setCurrentPage] = useState(0)
   const testimonialsGridRef = useRef(null)
+
+  // Hook do Hotjar para rastreamento
+  const { triggerEvent } = useHotjar(
+    HOTJAR_CONFIG.SITE_ID,
+    HOTJAR_CONFIG.VERSION,
+    HOTJAR_CONFIG.DEBUG
+  )
 
   const categories = [
     { id: 'all', label: 'Todos', count: 6 },
@@ -110,6 +119,7 @@ const Testimonials = () => {
   const nextPage = () => {
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1)
+      triggerEvent('testimonials_next_page')
       // Usar setTimeout para garantir que o estado seja atualizado antes do scroll
       setTimeout(() => {
         scrollToTestimonials()
@@ -120,6 +130,7 @@ const Testimonials = () => {
   const prevPage = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1)
+      triggerEvent('testimonials_prev_page')
       // Usar setTimeout para garantir que o estado seja atualizado antes do scroll
       setTimeout(() => {
         scrollToTestimonials()
@@ -141,6 +152,7 @@ const Testimonials = () => {
   const handleCategoryChange = (categoryId) => {
     setSelectedCategory(categoryId)
     setCurrentPage(0)
+    triggerEvent(`testimonials_filter_${categoryId}`)
     // Delay para garantir que o conteúdo seja renderizado antes do scroll
     setTimeout(() => {
       scrollToTestimonials()
@@ -282,6 +294,7 @@ const Testimonials = () => {
                             size="sm"
                             href={testimonial.linkedinUrl}
                             className="p-2 flex-shrink-0"
+                            onClick={() => triggerEvent('testimonial_linkedin_click')}
                           >
                             <Linkedin className="w-4 h-4" />
                           </Button>
@@ -318,6 +331,7 @@ const Testimonials = () => {
                     key={index}
                     onClick={() => {
                       setCurrentPage(index)
+                      triggerEvent(`testimonials_page_${index + 1}`)
                       // Usar setTimeout para garantir que o estado seja atualizado antes do scroll
                       setTimeout(() => {
                         scrollToTestimonials()
@@ -363,13 +377,15 @@ const Testimonials = () => {
                 <Button 
                   size="lg"
                   href="/contact"
+                  onClick={() => triggerEvent('testimonials_cta_contact')}
                 >
                   Iniciar Projeto
                 </Button>
                 <Button 
                   variant="secondary" 
                   size="lg"
-                  href="https://linkedin.com/in/samuel-junior-dev"
+                  href="https://www.linkedin.com/in/samuel-lima-analista-ti/"
+                  onClick={() => triggerEvent('testimonials_cta_linkedin')}
                 >
                   Conectar no LinkedIn
                 </Button>
