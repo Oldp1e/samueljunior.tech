@@ -2,15 +2,53 @@ import { motion } from 'framer-motion'
 import { Download, Mail, Phone, MapPin, Github, Linkedin, Calendar, ExternalLink } from 'lucide-react'
 import { pdf } from '@react-pdf/renderer'
 import { saveAs } from 'file-saver'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import CVDocument from '../components/CVDocument'
+import ProjectModal from '../components/ProjectModal'
+import { projects as centralizedProjects } from '../data/projects'
+import { useProjectModal } from '../hooks/useProjectModal'
 
 const Curriculum = () => {
   const navigate = useNavigate()
+  const projectsRef = useRef(null)
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false)
+
+  // Hook centralizado para gerenciar modais
+  const {
+    selectedProject,
+    isModalOpen,
+    openProjectModal,
+    closeProjectModal
+  } = useProjectModal(projectsRef)
+
+  // Função para mapear projetos do currículo com os dados centralizados
+  const findCentralizedProject = (projectName) => {
+    const projectMap = {
+      'Entity Strike': 'Entity Strike',
+      'Sistema de Cadastro de Fornecedores': 'Cadastro de Fornecedores',
+      'Easy Bid': 'Easy Bid',
+      'Outdoors Adventures Malta API': 'Outdoors Adventures Malta API',
+      'Extensão Chrome - Desmarcar Checkboxes Publicador': 'SC Extension'
+    }
+    
+    const mappedTitle = projectMap[projectName] || projectName
+    return centralizedProjects.find(project => project.title === mappedTitle)
+  }
+
+  const handleProjectClick = (project) => {
+    const centralizedProject = findCentralizedProject(project.name)
+    if (centralizedProject) {
+      openProjectModal(centralizedProject)
+    } else if (project.link) {
+      window.open(project.link, '_blank')
+    } else {
+      // Fallback para navegação com parâmetro
+      navigate(`/projects?project=${encodeURIComponent(project.name)}`)
+    }
+  }
 
   const handleDownloadPDF = async () => {
     setIsGeneratingPDF(true)
@@ -331,7 +369,7 @@ const Curriculum = () => {
                       className="p-4 bg-white/5 print:bg-gray-50 rounded-lg border border-white/10 print:border-gray-300 print:cursor-default cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-purple-500/50 print:hover:bg-gray-50 print:hover:border-gray-300 group"
                       onClick={() => {
                         if (!window.matchMedia('print').matches) {
-                          navigate(`/projects?project=${encodeURIComponent(project.name)}`)
+                          handleProjectClick(project)
                         }
                       }}
                       role="button"
@@ -339,7 +377,7 @@ const Curriculum = () => {
                       onKeyDown={(e) => {
                         if ((e.key === 'Enter' || e.key === ' ') && !window.matchMedia('print').matches) {
                           e.preventDefault()
-                          navigate(`/projects?project=${encodeURIComponent(project.name)}`)
+                          handleProjectClick(project)
                         }
                       }}
                     >
@@ -453,6 +491,13 @@ const Curriculum = () => {
           }
         }
       `}</style>
+      
+      {/* Project Details Modal */}
+      <ProjectModal 
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeProjectModal}
+      />
     </div>
   )
 }

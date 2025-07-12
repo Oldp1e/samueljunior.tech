@@ -2,17 +2,19 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Play } from 'lucide-react'
 
-const YouTubePlayer = ({ videoUrl, onClose }) => {
-  // Extrair o ID do vídeo do YouTube da URL
+const YouTubePlayer = ({ videoId, videoUrl, title, onClose }) => {
+  // Extrair o ID do vídeo do YouTube da URL (se videoUrl for fornecida)
   const getYouTubeId = (url) => {
+    if (!url) return null
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
     const match = url.match(regExp)
     return (match && match[2].length === 11) ? match[2] : null
   }
 
-  const videoId = getYouTubeId(videoUrl)
+  // Usar videoId diretamente ou extrair da videoUrl
+  const finalVideoId = videoId || getYouTubeId(videoUrl)
 
-  if (!videoId) return null
+  if (!finalVideoId) return null
 
   return (
     <AnimatePresence>
@@ -40,8 +42,8 @@ const YouTubePlayer = ({ videoUrl, onClose }) => {
 
           {/* YouTube Embed */}
           <iframe
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
-            title="YouTube video player"
+            src={`https://www.youtube.com/embed/${finalVideoId}?autoplay=1&rel=0&modestbranding=1`}
+            title={title || "YouTube video player"}
             className="w-full h-full"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

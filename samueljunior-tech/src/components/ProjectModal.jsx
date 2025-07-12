@@ -1,9 +1,20 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ExternalLink, Github, Calendar, Tag } from 'lucide-react'
+import { X, ExternalLink, Github, Calendar, Tag, MessageCircle, ArrowRight } from 'lucide-react'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from './ui/Button'
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
+  const navigate = useNavigate()
+  
+  // Função para extrair ID do YouTube da URL
+  const getYouTubeId = (url) => {
+    if (!url) return null
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+    const match = url.match(regExp)
+    return (match && match[2].length === 11) ? match[2] : null
+  }
+  
   // Adiciona listener para tecla ESC
   useEffect(() => {
     const handleEscape = (e) => {
@@ -128,11 +139,33 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 ))}
               </motion.div>
 
+              {/* Video Section (se existir) - Logo após o header */}
+              {project.videoUrl && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.25 }}
+                  className="mb-8"
+                >
+                  <h3 className="text-xl font-semibold text-white mb-4">🎥 Demonstração</h3>
+                  <div className="aspect-video rounded-xl overflow-hidden bg-gray-800 border border-white/10">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${getYouTubeId(project.videoUrl)}?rel=0&modestbranding=1`}
+                      title={`${project.title} - Demonstração`}
+                      className="w-full h-full"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </motion.div>
+              )}
+
               {/* Description */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.35 }}
                 className="prose prose-invert max-w-none mb-8"
               >
                 {/* Renderizar o conteúdo detalhado do projeto */}
@@ -150,7 +183,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
+                  transition={{ delay: 0.45 }}
                   className="mb-8"
                 >
                   <h3 className="text-xl font-semibold text-white mb-4">🚀 Principais Funcionalidades</h3>
@@ -170,7 +203,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
+                  transition={{ delay: 0.55 }}
                   className="mb-8"
                 >
                   <h3 className="text-xl font-semibold text-white mb-4">💡 Desafios e Soluções</h3>
@@ -184,8 +217,8 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="flex flex-col sm:flex-row gap-4"
+                transition={{ delay: 0.65 }}
+                className="flex flex-col sm:flex-row gap-4 mb-8"
               >
                 {project.liveUrl && (
                   <Button
@@ -209,6 +242,33 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     Ver Código
                   </Button>
                 )}
+              </motion.div>
+
+              {/* Call to Action */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.75 }}
+                className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-2xl p-6 border border-purple-500/20"
+              >
+                <div className="text-center">
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Gostou deste projeto? 🚀
+                  </h3>
+                  <p className="text-gray-300 mb-4">
+                    Vamos conversar sobre como posso ajudar você a criar algo incrível também!
+                  </p>
+                  <Button
+                    onClick={() => {
+                      onClose()
+                      navigate('/contact')
+                    }}
+                    className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
+                    size="lg"
+                  >                   
+                    Entre em Contato                    
+                  </Button>
+                </div>
               </motion.div>
             </div>
           </motion.div>

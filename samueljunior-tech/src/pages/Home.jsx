@@ -1,44 +1,27 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useRef } from 'react'
 import { ArrowRight, Download, Github, Linkedin, Play, Code, Gamepad2, Shield, Server, Database, Cog, Eye, ExternalLink, Star } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
+import ProjectModal from '../components/ProjectModal'
+import { getFeaturedProjects, getCategoryLabel } from '../data/projects'
+import { useProjectModal } from '../hooks/useProjectModal'
 
 const Home = () => {
   const navigate = useNavigate()
+  const projectsRef = useRef(null)
   
-  // Projetos em destaque
-  const featuredProjects = [
-    {
-      id: 1,
-      title: 'Outdoors Adventures Malta API',
-      description: 'API completa para sistema de aluguel de embarcações e esportes aquáticos com reservas, pagamentos via Stripe e painel administrativo.',
-      image: 'outdoors.png',
-      technologies: ['PHP', 'SQL', 'JWT', 'Stripe API'],
-      liveUrl: 'https://outdooradventuresmalta.com/',
-      category: 'Backend & API'
-    },
-    {
-      id: 2,
-      title: 'Easy Bid',
-      description: 'Plataforma de cotações fáceis com prompts via IA para otimizar processos com sistema de controle.',
-      image: 'login.png',
-      technologies: ['React', 'Node.js', 'AI'],
-      githubUrl: 'https://github.com/Oldp1e/easybid/',
-      category: 'Full Stack & AI'
-    },
-    {
-      id: 4,
-      title: 'Entity Strike',
-      description: 'Jogo estilo Survivors onde o player deve sobreviver a hordas de inimigos.',
-      image: 'store_capsule_header.jpg',
-      technologies: ['Unity', 'C#', '2D'],
-      liveUrl: 'https://store.steampowered.com/app/3685980/Entity_Strike/',
-      liveUrlText: 'Steam',
-      videoUrl: 'https://www.youtube.com/watch?v=wzA4JLpE3ts',
-      category: 'Game Development'
-    }
-  ]
+  // Hook centralizado para gerenciar modais
+  const {
+    selectedProject,
+    isModalOpen,
+    openProjectModal,
+    closeProjectModal
+  } = useProjectModal(projectsRef)
+  
+  // Projetos em destaque - vem dos dados centralizados
+  const featuredProjects = getFeaturedProjects()
   
   const skills = [
     { 
@@ -266,7 +249,7 @@ const Home = () => {
       </section>
 
       {/* Featured Projects Section */}
-      <section className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-20 2xl:py-32">
+      <section ref={projectsRef} className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-20 2xl:py-32">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -294,7 +277,7 @@ const Home = () => {
                 className="group"
               >
                 <Card className="overflow-hidden h-full hover:transform hover:scale-105 transition-all duration-300 cursor-pointer"
-                      onClick={() => navigate('/projects')}>
+                      onClick={() => openProjectModal(project)}>
                   {/* Project Image */}
                   <div className="relative overflow-hidden h-48">
                     <div className="w-full h-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center relative">
@@ -328,7 +311,7 @@ const Home = () => {
                   <div className="p-6">
                     <div className="mb-3">
                       <span className="text-xs text-purple-400 font-medium uppercase tracking-wide">
-                        {project.category}
+                        {getCategoryLabel(project.category)}
                       </span>
                     </div>
                     
@@ -443,6 +426,13 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+      
+      {/* Project Details Modal */}
+      <ProjectModal 
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeProjectModal}
+      />
     </div>
   )
 }
