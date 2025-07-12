@@ -25,7 +25,6 @@ const Projects = () => {
   ]
 
   const projects = [
-    ,
     {
       id: 1,
       title: 'Outdoors Adventures Malta API',
@@ -278,9 +277,27 @@ const Projects = () => {
     
     if (projectName && !urlProjectProcessed && projects.length > 0) {
       // Busca case-insensitive por nome do projeto
-      const project = projects.find(p => 
-        p.title.toLowerCase() === projectName.toLowerCase()
-      )
+      // Aceita tanto o nome exato quanto variações (ex: "Sistema de Cadastro de Fornecedores" -> "Cadastro de Fornecedores")
+      const project = projects.find(p => {
+        const projectTitle = p.title.toLowerCase()
+        const searchName = projectName.toLowerCase()
+        
+        // Busca exata
+        if (projectTitle === searchName) return true
+        
+        // Busca parcial - se o nome da URL contém o título do projeto ou vice-versa
+        if (projectTitle.includes(searchName) || searchName.includes(projectTitle)) return true
+        
+        // Busca por palavras-chave principais
+        const projectWords = projectTitle.split(' ').filter(word => word.length > 2)
+        const searchWords = searchName.split(' ').filter(word => word.length > 2)
+        const matchingWords = projectWords.filter(word => 
+          searchWords.some(searchWord => searchWord.includes(word) || word.includes(searchWord))
+        )
+        
+        // Se pelo menos 2 palavras principais coincidem, considera um match
+        return matchingWords.length >= 2
+      })
       
       if (project) {
         setUrlProjectProcessed(true)
