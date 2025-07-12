@@ -143,10 +143,10 @@ const Curriculum = () => {
       link: 'https://github.com/Oldp1e/easybid/'
     },
     {
-      name: 'Módulo Frequência Web',
-      description: 'Modernização completa do sistema legado Gurhu para gestão de RH na área da saúde pública',
-      technologies: ['PHP', 'Scriptcase', 'MySQL', 'JWT', 'XML/XLSX'],
-      link: null
+      name: 'Outdoors Adventures Malta API',
+      description: 'API completa para sistema de aluguel de embarcações com reservas, Stripe e painel administrativo',
+      technologies: ['PHP', 'SQL', 'JWT', 'Stripe API', 'Swagger', 'Web Routing'],
+      link: null,
     },
     {
       name: 'Extensão Chrome - Desmarcar Checkboxes Publicador',

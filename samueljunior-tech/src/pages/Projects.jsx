@@ -19,46 +19,54 @@ const Projects = () => {
   const [urlProjectProcessed, setUrlProjectProcessed] = useState(false)
 
   const categories = [
-    { id: 'all', label: 'Todos', count: 12 },
+    { id: 'all', label: 'Todos', count: 6 },
     { id: 'web', label: 'Web Apps', count: 5 },
-    { id: 'game', label: 'Games', count: 4 },
-    { id: 'mobile', label: 'Mobile', count: 3 }
+    { id: 'game', label: 'Games', count: 1 },
   ]
 
   const projects = [
+    ,
     {
       id: 1,
-      title: 'Entity Strike',
-      category: 'game',
-      description: 'Jogo estilo Survivors onde o player deve sobreviver a hordas de inimigos.',
+      title: 'Outdoors Adventures Malta API',
+      category: 'web',
+      description: 'API completa para sistema de aluguel de embarcações e esportes aquáticos com reservas, pagamentos via Stripe e painel administrativo.',
       detailedDescription: `
-        <p><strong>Entity Strike</strong> é um jogo indie no estilo bullet-hell/survivors desenvolvido em Unity. O jogador deve sobreviver a ondas infinitas de inimigos enquanto coleta power-ups e evolui suas habilidades.</p>
+        <p><strong>Outdoors Adventures Malta API</strong> é uma API REST robusta desenvolvida para gerenciar um sistema completo de aluguel de embarcações e atividades aquáticas.</p>
         
-        <p>O jogo apresenta:</p>
+        <p>O sistema oferece:</p>
         <ul>
-          <li>Sistema de progressão de personagem com múltiplas habilidades</li>
-          <li>Mecânicas de combate fluidas e responsivas</li>
-          <li>Geração procedural de inimigos e power-ups</li>
-          <li>Sistema de pontuação e ranking global</li>
+          <li><strong>Sistema de Reservas:</strong> Gestão completa de agendamentos com slots de tempo pré-definidos (Manhã, Tarde, Dia Inteiro)</li>
+          <li><strong>Integração Stripe:</strong> Processamento seguro de pagamentos com aprovação administrativa</li>
+          <li><strong>Autenticação JWT:</strong> Sistema de autenticação seguro com hash para proteção de dados</li>
+          <li><strong>Painel Administrativo:</strong> Interface completa para gestão de reservas, aprovações e recursos</li>
+          <li><strong>Múltiplos Serviços:</strong> Suporte a lanchas, jet skis, kayaks, e atividades com skipper</li>
         </ul>
+        
+        <p>A API está 100% documentada via Swagger e utiliza arquitetura moderna com migrations, seeds e web routing avançado.</p>
       `,
       features: [
-        'Sistema de progressão dinâmico',
-        'Múltiplas armas e habilidades',
-        'Sistema de conquistas e desafios',
-        'Gráficos 2D Integrados junto com Artista',
-        'Soundtrack Insana',
-        'Sistema de conquistas'
+        'Web Routing com PHP nativo',
+        'Autenticação JWT com hash security',
+        'Integração completa com Stripe',
+        'Migrations e Seeds automatizados',
+        'Documentação 100% via Swagger',
+        'Sistema de aprovação administrativa',
+        'Gestão de slots de tempo dinâmicos',
+        'API REST com padrões modernos',
+        'Composer para gerenciamento de dependências',
+        'Banco de dados SQL otimizado',
+        'Sistema de reviews e avaliações',
+        'Integração com redes sociais'
       ],
-      challenges: 'O maior desafio foi otimizar o sistema de spawn de inimigos para manter 60fps mesmo com centenas de entidades na tela. Implementei um sistema de object pooling e otimizações específicas para dispositivos de menor performance.',
-      image: 'store_capsule_header.jpg',
-      videoUrl: 'https://www.youtube.com/watch?v=wzA4JLpE3ts',
-      technologies: ['Unity', 'C#', '2D'],
-      liveUrl: 'https://store.steampowered.com/app/3685980/Entity_Strike/',
-      liveUrlText: 'Steam',
-      githubUrl: 'https://github.com/Oldp1e/EntityStrike',
+      challenges: 'O maior desafio foi criar um sistema de reservas que gerenciasse múltiplos tipos de embarcações com diferentes regras de negócio, slots de tempo limitados e aprovação administrativa antes do processamento do pagamento. Implementei um sistema de estados para reservas que mantém os pagamentos em hold até aprovação, além de criar uma arquitetura de routing personalizada que suporta todas as funcionalidades necessárias.',
+      image: 'outdoors.png',
+      videoUrl: null,
+      technologies: ['PHP', 'SQL', 'JWT', 'Stripe API', 'Swagger', 'Composer', 'Web Routing', 'Migrations'],
+      liveUrl: 'https://outdooradventuresmalta.com/',
+      githubUrl: null,
       featured: true
-    },
+    },    
     {
       id: 2,
       title: 'Easy Bid',
@@ -135,6 +143,39 @@ const Projects = () => {
     },
     {
       id: 4,
+      title: 'Entity Strike',
+      category: 'game',
+      description: 'Jogo estilo Survivors onde o player deve sobreviver a hordas de inimigos.',
+      detailedDescription: `
+        <p><strong>Entity Strike</strong> é um jogo indie no estilo bullet-hell/survivors desenvolvido em Unity. O jogador deve sobreviver a ondas infinitas de inimigos enquanto coleta power-ups e evolui suas habilidades.</p>
+        
+        <p>O jogo apresenta:</p>
+        <ul>
+          <li>Sistema de progressão de personagem com múltiplas habilidades</li>
+          <li>Mecânicas de combate fluidas e responsivas</li>
+          <li>Geração procedural de inimigos e power-ups</li>
+          <li>Sistema de pontuação e ranking global</li>
+        </ul>
+      `,
+      features: [
+        'Sistema de progressão dinâmico',
+        'Múltiplas armas e habilidades',
+        'Sistema de conquistas e desafios',
+        'Gráficos 2D Integrados junto com Artista',
+        'Soundtrack Insana',
+        'Sistema de conquistas'
+      ],
+      challenges: 'O maior desafio foi otimizar o sistema de spawn de inimigos para manter 60fps mesmo com centenas de entidades na tela. Implementei um sistema de object pooling e otimizações específicas para dispositivos de menor performance.',
+      image: 'store_capsule_header.jpg',
+      videoUrl: 'https://www.youtube.com/watch?v=wzA4JLpE3ts',
+      technologies: ['Unity', 'C#', '2D'],
+      liveUrl: 'https://store.steampowered.com/app/3685980/Entity_Strike/',
+      liveUrlText: 'Steam',
+      githubUrl: 'https://github.com/Oldp1e/EntityStrike',
+      featured: true
+    },
+    {
+      id: 6,
       title: 'Módulo Frequência Web',
       category: 'web',
       description: 'Modernização do sistema legado Gurhu para uma aplicação web intuitiva, focada em gestão de frequência, plantões e recursos humanos na área da saúde pública.',
@@ -202,19 +243,6 @@ const Projects = () => {
       technologies: ['JavaScript', 'Chrome Extension API', 'DOM Manipulation', 'Manifest V3'],
       liveUrl: null,
       githubUrl: 'https://github.com/Oldp1e/desmarcar-checkboxes-publicador',
-      featured: false
-    },
-    {
-      id: 6,
-      title: 'Weather App',
-      category: 'mobile',
-      description: 'Aplicativo de clima com previsões detalhadas e interface moderna',
-      image: 'weather-app.jpg',
-      videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Substitua pela URL real
-      technologies: ['Flutter', 'Dart', 'OpenWeather API'],
-      liveUrl: 'https://weather.com',
-      liveUrlText: 'Ver App', // Texto customizado para o botão
-      githubUrl: 'https://github.com',
       featured: false
     }
   ]
