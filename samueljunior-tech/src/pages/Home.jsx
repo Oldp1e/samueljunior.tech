@@ -180,7 +180,7 @@ const Home = () => {
               {[
                 { icon: Github, href: 'https://github.com/Oldp1e', label: 'GitHub' },
                 { icon: Linkedin, href: 'https://www.linkedin.com/in/samuel-lima-analista-ti/', label: 'LinkedIn' },
-                { icon: Play, href: 'https://youtube.com/oldp1e', label: 'YouTube' }
+                { icon: Play, href: 'https://www.youtube.com/channel/UCHoUnLa6QAIOyDjV4TqurnA', label: 'YouTube' }
               ].map((social, index) => {
                 const Icon = social.icon
                 return (
