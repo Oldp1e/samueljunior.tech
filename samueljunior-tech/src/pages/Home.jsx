@@ -99,8 +99,8 @@ const Home = () => {
                         className="w-full h-full rounded-full object-cover border-2 border-gray-800"
                         onError={(e) => {
                           // Fallback para um gradiente se a imagem não carregar
-                          e.target.style.display = 'none'
-                          e.target.nextSibling.style.display = 'flex'
+                          e.target.classList.add('image-error-hidden')
+                          e.target.nextSibling.classList.add('image-error-fallback')
                         }}
                       />
                       {/* Fallback avatar */}
@@ -286,7 +286,7 @@ const Home = () => {
                         alt={project.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         onError={(e) => {
-                          e.target.style.display = 'none'
+                          e.target.classList.add('image-error-hidden')
                         }}
                       />
                       {/* Overlay with play icon for video projects */}

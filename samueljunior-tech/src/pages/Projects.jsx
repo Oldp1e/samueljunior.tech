@@ -195,7 +195,7 @@ const Projects = () => {
                         alt={project.title}
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                          e.target.style.display = 'none'
+                          e.target.classList.add('image-error-hidden')
                         }}
                       />
                       
@@ -360,8 +360,8 @@ const Projects = () => {
                         alt={project.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         onError={(e) => {
-                          e.target.style.display = 'none'
-                          e.target.nextSibling.style.display = 'flex'
+                          e.target.classList.add('image-error-hidden')
+                          e.target.nextSibling.classList.add('image-error-fallback')
                         }}
                       />
                       {/* Fallback with project icon */}

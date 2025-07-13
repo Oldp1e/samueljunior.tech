@@ -263,8 +263,8 @@ const Testimonials = () => {
                                 className="w-12 h-12 rounded-full object-cover border-2 border-white/20"
                                 onError={(e) => {
                                   // Fallback para iniciais se a imagem não carregar
-                                  e.target.style.display = 'none'
-                                  e.target.nextSibling.style.display = 'flex'
+                                  e.target.classList.add('image-error-hidden')
+                                  e.target.nextSibling.classList.add('image-error-fallback')
                                 }}
                               />
                               <div 

@@ -147,6 +147,33 @@
   .social-icon:hover {
     color: #ffffff;
   }
+
+  /* Animation delay utilities for better SEO */
+  .animate-delay-2s {
+    animation-delay: 2s;
+  }
+  
+  .animate-delay-4s {
+    animation-delay: 4s;
+  }
+  
+  .animate-delay-6s {
+    animation-delay: 6s;
+  }
+
+  /* Modal utilities for better SEO */
+  .modal-open {
+    overflow: hidden !important;
+  }
+
+  /* Image error handling utilities */
+  .image-error-hidden {
+    display: none !important;
+  }
+  
+  .image-error-fallback {
+    display: flex !important;
+  }
 }
 
 a {

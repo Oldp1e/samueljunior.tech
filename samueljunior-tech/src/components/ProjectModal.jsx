@@ -25,13 +25,13 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape)
-      // Previne scroll do body quando modal está aberto
-      document.body.style.overflow = 'hidden'
+      // Previne scroll do body quando modal está aberto usando classe CSS
+      document.body.classList.add('modal-open')
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'unset'
+      document.body.classList.remove('modal-open')
     }
   }, [isOpen, onClose])
 
@@ -82,7 +82,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   alt={project.title}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.target.style.display = 'none'
+                    e.target.classList.add('image-error-hidden')
                   }}
                 />
               </div>
