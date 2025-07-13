@@ -10,6 +10,7 @@ import OpenGraphMeta from './components/OpenGraphMeta'
 import DynamicOGImage from './components/DynamicOGImage'
 import StructuredData from './components/StructuredData'
 import { useAsyncStyles, preloadCriticalResources } from './utils/resourceLoader'
+import { useLayoutStability, useWebVitals, usePerformanceOptimization } from './hooks/usePerformance'
 import './styles/critical.css'
 
 // Lazy Loading das páginas para melhor performance
@@ -26,11 +27,17 @@ import { HOTJAR_CONFIG, isHotjarConfigured } from './config/hotjar'
 
 function App() {
   const { loadStyles } = useAsyncStyles()
+  const { preloadCriticalImages } = useLayoutStability()
+  const { isIdle } = usePerformanceOptimization()
+  
+  // Web Vitals monitoring (production only)
+  useWebVitals()
 
   // Carregar recursos de forma assíncrona
   useEffect(() => {
-    // Preload recursos críticos
+    // Preload recursos críticos imediatamente
     preloadCriticalResources()
+    preloadCriticalImages()
     
     // Carregar estilos não críticos após o primeiro render
     const timer = setTimeout(() => {
@@ -38,21 +45,25 @@ function App() {
     }, 100)
 
     return () => clearTimeout(timer)
-  }, [loadStyles])
+  }, [loadStyles, preloadCriticalImages])
 
-  // Inicializar Hotjar
+  // Inicializar Hotjar apenas quando necessário
   const { triggerEvent, addTags } = useHotjar(
     HOTJAR_CONFIG.SITE_ID,
     HOTJAR_CONFIG.VERSION,
     HOTJAR_CONFIG.DEBUG
   )
 
-  // Log para desenvolvimento
-  if (HOTJAR_CONFIG.DEBUG && isHotjarConfigured()) {
-    console.log('Hotjar está configurado e ativo')
-  } else if (!isHotjarConfigured()) {
-    console.warn('Hotjar não está configurado. Verifique as variáveis de ambiente.')
-  }
+  // Log para desenvolvimento - apenas quando idle para não bloquear
+  useEffect(() => {
+    if (isIdle) {
+      if (HOTJAR_CONFIG.DEBUG && isHotjarConfigured()) {
+        console.log('Hotjar está configurado e ativo')
+      } else if (!isHotjarConfigured()) {
+        console.warn('Hotjar não está configurado. Verifique as variáveis de ambiente.')
+      }
+    }
+  }, [isIdle])
   return (
     <Router>
       <ResourcePreloader />

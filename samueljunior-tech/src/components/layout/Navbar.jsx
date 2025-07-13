@@ -27,11 +27,12 @@ const Navbar = () => {
       <div className="w-full max-w-7xl mx-auto">
         <div className={`glass-navbar px-6 py-4 flex items-center justify-between w-full ${isOpen ? 'menu-open' : ''}`}>
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/" className="flex items-center space-x-2 group" aria-label="Voltar para página inicial">
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
               className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center"
+              aria-hidden="true"
             >
               <Code className="w-5 h-5 text-white" />
             </motion.div>
@@ -49,6 +50,8 @@ const Navbar = () => {
                   key={item.path}
                   to={item.path}
                   className="relative group"
+                  aria-label={`Navegar para ${item.label}`}
+                  aria-current={isActive(item.path) ? 'page' : undefined}
                 >
                   <motion.div
                     whileHover={{ scale: 1.05 }}
@@ -82,6 +85,9 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 rounded-lg glass-mobile-button text-white hover:text-purple-300 transition-colors"
+            aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </motion.button>
@@ -96,6 +102,9 @@ const Navbar = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
               className="md:hidden mt-4"
+              id="mobile-navigation"
+              role="navigation"
+              aria-label="Menu de navegação mobile"
             >
               <div className="glass-mobile-menu p-4 space-y-2">
                 {navItems.map((item, index) => {
@@ -115,6 +124,8 @@ const Navbar = () => {
                             ? 'bg-gradient-to-r from-purple-500/30 to-pink-500/30 text-white backdrop-blur-sm border border-white/20 shadow-lg'
                             : 'text-gray-200 hover:text-white hover:bg-white/20 hover:backdrop-blur-sm hover:border hover:border-white/10 hover:shadow-md'
                         }`}
+                        aria-label={`Navegar para ${item.label}`}
+                        aria-current={isActive(item.path) ? 'page' : undefined}
                       >
                         <Icon className="w-5 h-5" />
                         <span className="font-medium">{item.label}</span>

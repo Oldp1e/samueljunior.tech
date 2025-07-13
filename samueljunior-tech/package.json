@@ -11,14 +11,13 @@
     "sitemap": "node scripts/generate-sitemap-simple.js"
   },
   "dependencies": {
-    "@react-pdf/renderer": "^4.3.0",
     "@tailwindcss/vite": "^4.1.11",
-    "file-saver": "^2.0.5",
     "framer-motion": "^12.23.3",
     "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.3"
+    "react-router-dom": "^7.6.3",
+    "web-vitals": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

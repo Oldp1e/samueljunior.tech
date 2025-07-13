@@ -173,7 +173,7 @@ const Projects = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 layout
               >
-                <Card className="group overflow-hidden h-full cursor-pointer" onClick={() => openProjectModalWithTracking(project)}>
+                <Card className="group overflow-hidden h-full cursor-pointer" onClick={() => openProjectModalWithTracking(project)} role="button" aria-label={`Ver detalhes do projeto ${project.title}`} tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProjectModalWithTracking(project); } }}>
                   {/* Project Image */}
                   <div className="relative overflow-hidden">
                     <div 
@@ -186,6 +186,21 @@ const Projects = () => {
                           triggerEvent(`project_video_play_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
                         } else {
                           openProjectModalWithTracking(project)
+                        }
+                      }}
+                      role="button"
+                      aria-label={project.videoUrl ? `Reproduzir vídeo do projeto ${project.title}` : `Ver imagem do projeto ${project.title}`}
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          if (project.videoUrl) {
+                            setCurrentVideo(project.videoUrl)
+                            triggerEvent(`project_video_play_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
+                          } else {
+                            openProjectModalWithTracking(project)
+                          }
                         }
                       }}
                     >
@@ -260,6 +275,7 @@ const Projects = () => {
                           size="sm"
                           href={project.liveUrl}
                           className="flex-1 group"
+                          aria-label={`Ver demonstração do projeto ${project.title}`}
                           onClick={(e) => {
                             e.stopPropagation()
                             triggerEvent(`project_demo_click_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
@@ -278,6 +294,7 @@ const Projects = () => {
                           size="sm"
                           href={project.githubUrl}
                           className="flex items-center justify-center"
+                          aria-label={`Ver código fonte do projeto ${project.title} no GitHub`}
                           onClick={(e) => {
                             e.stopPropagation()
                             triggerEvent(`project_github_click_${project.title.toLowerCase().replace(/\s+/g, '_')}`)

@@ -2,7 +2,11 @@ import { motion } from 'framer-motion'
 
 const PageLoader = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-dark-900 to-dark-800">
+    <div 
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-dark-900 to-dark-800"
+      role="status" 
+      aria-label="Carregando página"
+    >
       <motion.div
         className="flex flex-col items-center space-y-4"
         initial={{ opacity: 0, scale: 0.8 }}
@@ -14,6 +18,7 @@ const PageLoader = () => {
           className="w-12 h-12 border-4 border-purple-500/20 border-t-purple-500 rounded-full"
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          aria-hidden="true"
         />
         
         {/* Loading Text */}
@@ -23,7 +28,7 @@ const PageLoader = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <p className="text-gray-400 text-sm">Carregando...</p>
+          <p className="text-gray-400 text-sm" aria-live="polite">Carregando...</p>
         </motion.div>
 
         {/* Pulse Effect */}
@@ -38,6 +43,7 @@ const PageLoader = () => {
             repeat: Infinity,
             ease: "easeInOut"
           }}
+          aria-hidden="true"
         />
       </motion.div>
     </div>

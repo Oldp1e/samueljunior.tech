@@ -1,12 +1,9 @@
 import { motion } from 'framer-motion'
 import { Download, Mail, Phone, MapPin, Github, Linkedin, Calendar, ExternalLink } from 'lucide-react'
-import { pdf } from '@react-pdf/renderer'
-import { saveAs } from 'file-saver'
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
-import CVDocument from '../components/CVDocument'
 import ProjectModal from '../components/ProjectModal'
 import { projects as centralizedProjects } from '../data/projects'
 import { useProjectModal } from '../hooks/useProjectModal'
@@ -53,13 +50,22 @@ const Curriculum = () => {
   const handleDownloadPDF = async () => {
     setIsGeneratingPDF(true)
     try {
-      const blob = await pdf(<CVDocument />).toBlob()
-      saveAs(blob, 'Samuel_Pereira_Lima_Junior_CV.pdf')
+      // Temporariamente usando print do navegador como solução mais estável
+      console.log('Gerando PDF via impressão do navegador...')
+      
+      // Adiciona classe de impressão para styling específico
+      document.body.classList.add('printing')
+      
+      // Pequeno delay para aplicar estilos
+      setTimeout(() => {
+        window.print()
+        document.body.classList.remove('printing')
+        setIsGeneratingPDF(false)
+      }, 100)
+      
     } catch (error) {
-      console.error('Erro ao gerar PDF:', error)
-      // Fallback para impressão tradicional
-      window.print()
-    } finally {
+      console.error('Erro ao preparar impressão:', error)
+      alert('Erro ao preparar documento. Tente novamente.')
       setIsGeneratingPDF(false)
     }
   }
@@ -222,7 +228,7 @@ const Curriculum = () => {
   ]
 
   return (
-    <div className="min-h-screen pt-24 print:pt-0">
+    <div className="min-h-screen pt-24 print:pt-0 curriculum-container">
       <div className="w-full px-4 lg:px-8 xl:px-16 2xl:px-24 py-12 print:px-8 print:py-4">
         <div className="max-w-4xl mx-auto">
           {/* Header com botão de download */}
@@ -230,7 +236,7 @@ const Curriculum = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12 print:hidden"
+            className="text-center mb-12 print:hidden no-print"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Meu <span className="gradient-text">Currículo</span>
@@ -241,7 +247,7 @@ const Curriculum = () => {
             <Button
               onClick={handleDownloadPDF}
               disabled={isGeneratingPDF}
-              className="group"
+              className="group download-button"
               size="lg"
             >
               {isGeneratingPDF ? (

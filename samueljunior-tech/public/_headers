@@ -1,0 +1,31 @@
+# Cache e headers de performance para Vercel
+/*
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Assets estáticos com cache longo
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML e API com cache menor
+/*.html
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
+# Sitemap e robots
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+
+/robots.txt
+  Cache-Control: public, max-age=86400
