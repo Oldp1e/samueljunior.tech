@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://samueljunior.tech/sitemap.xml
+
+# Política para crawlers
+Crawl-delay: 1
+
+# Permitir acesso a todos os recursos importantes
+Allow: /projects
+Allow: /about
+Allow: /contact
+Allow: /testimonials
+Allow: /curriculum
+
+# Permitir imagens e recursos estáticos
+Allow: /images/
+Allow: *.jpg
+Allow: *.png
+Allow: *.gif
+Allow: *.svg
+Allow: *.css
+Allow: *.js
+
+# Desabilitar crawl em arquivos de desenvolvimento (se existirem)
+Disallow: *.map
+Disallow: /dev/
+Disallow: /test/
