@@ -239,6 +239,7 @@ export const sandboxProjects = [
     githubUrl: 'https://github.com/Oldp1e/DinoEncyclopedia',
     liveUrl: 'https://dino-encyclopedia-mu.vercel.app/',
     vercelUrl: 'https://vercel.com/samuel-juniors-projects-5e157e6a/dino-encyclopedia',
+    videoUrl: 'https://www.youtube.com/watch?v=TzLkJKAK_00',
     image: 'dino.png',
     category: 'sandbox',
     theme: {
@@ -264,11 +265,38 @@ export const sandboxProjects = [
     githubUrl: 'https://github.com/Oldp1e/HolocronDatabank',
     liveUrl: 'https://holocron-databank.vercel.app/',
     vercelUrl: 'https://vercel.com/samuel-juniors-projects-5e157e6a/holocron-databank',
+    videoUrl: 'https://www.youtube.com/watch?v=CUge29aEFAc',
     image: 'holocron.png',
     category: 'sandbox',
     theme: {
       colors: ['Azul claro', 'Roxo', 'Ciano', 'Preto espacial', 'Azul escuro'],
       style: 'Glassmorphism com tema Star Wars holográfico'
+    }
+  },
+  {
+    id: '3d-retro-library',
+    title: '3D Retro Library',
+    description: 'Arcade nostálgico dos anos 80 em sua tela! Uma experiência 3D interativa onde cartuchos de jogos flutuam no espaço usando Three.js e React Three Fiber.',
+    technologies: ['React 18', 'TypeScript', 'Three.js', 'React Three Fiber', 'GSAP', 'Vite'],
+    features: [
+      'Cartuchos 3D flutuantes com física e animações suaves',
+      'Console 3D com slot funcional e luzes neon',
+      'Sistema de câmera cinematográfica animada',
+      'Sistema de áudio imersivo com synthwave',
+      'Visual cyberpunk/neon com efeitos de glow e bloom',
+      'Starfield animado e scanlines estilo CRT',
+      'Interface retrô com tipografia pixel-perfect',
+      'Experiência totalmente responsiva e interativa'
+    ],
+    githubUrl: 'https://github.com/Oldp1e/3DRetroLibrary',
+    liveUrl: 'https://oldp1e.github.io/3DRetroLibrary/',
+    vercelUrl: null,
+    videoUrl: 'https://www.youtube.com/watch?v=nWECNSoKgRY',
+    image: '3d-retro-library.png',
+    category: 'sandbox',
+    theme: {
+      colors: ['Magenta neon', 'Cyan', 'Verde limão', 'Roxo escuro', 'Preto espacial'],
+      style: 'Cyberpunk/Neon com efeitos 3D e CRT'
     }
   }
 ]

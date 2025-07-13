@@ -1,10 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Github, ExternalLink, Globe, Star } from 'lucide-react'
+import { X, Github, ExternalLink, Globe, Star, Play } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import Button from './ui/Button'
+import YouTubePlayer from './YouTubePlayer'
 
 const SandboxModal = ({ project, isOpen, onClose }) => {
   const [isLoading, setIsLoading] = useState(true)
+  const [currentVideo, setCurrentVideo] = useState(null)
   
   // Reset loading state quando o modal abre ou o projeto muda
   useEffect(() => {
@@ -99,51 +101,72 @@ const SandboxModal = ({ project, isOpen, onClose }) => {
                       </ul>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="pt-2">
-                      <div className="flex space-x-2">
-                        {/* Site button - hidden on mobile */}
-                        <Button
-                          href={project.liveUrl}
-                          variant="primary"
-                          size="sm"
-                          className="flex-1 hidden lg:flex"
+                    {/* Action Buttons - Desktop Only */}
+                    <div className="pt-2 hidden lg:block">
+                      <div className="grid grid-cols-2 gap-3">
+                        {/* Live Demo button */}
+                        <button
+                          onClick={() => window.open(project.liveUrl, '_blank')}
+                          className="flex items-center justify-center p-3 hover:bg-white/10 rounded-lg transition-colors group"
+                          title="Abrir Demo ao Vivo"
                         >
-                          Site
-                        </Button>
+                          <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                        </button>
                         
-                        <Button
-                          href={project.githubUrl}
-                          variant="secondary"
-                          size="sm"
-                          className="flex-1"
+                        {/* GitHub button */}
+                        <button
+                          onClick={() => window.open(project.githubUrl, '_blank')}
+                          className="flex items-center justify-center p-3 hover:bg-white/10 rounded-lg transition-colors group"
+                          title="Ver no GitHub"
                         >
-                          GitHub
-                        </Button>
+                          <Github className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                        </button>
                         
-                        {project.vercelUrl && (
-                          <Button
-                            href={project.vercelUrl}
-                            variant="secondary"
-                            size="sm"
-                            className="flex-1"
+                        {/* Video button - only if video exists */}
+                        {project.videoUrl && (
+                          <button
+                            onClick={() => setCurrentVideo(project.videoUrl)}
+                            className="flex items-center justify-center p-3 hover:bg-white/10 rounded-lg transition-colors group col-span-2"
+                            title="Assistir Demonstração"
                           >
-                            Vercel
-                          </Button>
+                            <Play className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                          </button>
                         )}
                       </div>
                     </div>
 
-                    {/* Mobile Preview Button - Only show on mobile */}
-                    <div className="lg:hidden pt-4">
-                      <Button
-                        href={project.liveUrl}
-                        variant="outline"
-                        size="lg"
-                        className="w-full"
-                      >
-                        🔗 Abrir Preview do Site
-                      </Button>
+                    {/* Mobile Action Buttons - Only show on mobile */}
+                    <div className="lg:hidden pt-4 block">
+                      <div className="grid grid-cols-2 gap-3">
+                        {/* Live Demo button */}
+                        <button
+                          onClick={() => window.open(project.liveUrl, '_blank')}
+                          className="flex flex-col items-center justify-center p-4 hover:bg-white/10 rounded-lg transition-colors group"
+                        >
+                          <ExternalLink className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors mb-1" />
+                          <span className="text-xs text-gray-400 group-hover:text-white transition-colors">Demo</span>
+                        </button>
+                        
+                        {/* GitHub button */}
+                        <button
+                          onClick={() => window.open(project.githubUrl, '_blank')}
+                          className="flex flex-col items-center justify-center p-4 hover:bg-white/10 rounded-lg transition-colors group"
+                        >
+                          <Github className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors mb-1" />
+                          <span className="text-xs text-gray-400 group-hover:text-white transition-colors">GitHub</span>
+                        </button>
+                        
+                        {/* Video button - spans full width if exists */}
+                        {project.videoUrl && (
+                          <button
+                            onClick={() => setCurrentVideo(project.videoUrl)}
+                            className="flex flex-col items-center justify-center p-4 hover:bg-white/10 rounded-lg transition-colors group col-span-2"
+                          >
+                            <Play className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors mb-1" />
+                            <span className="text-xs text-gray-400 group-hover:text-white transition-colors">Assistir Demonstração</span>
+                          </button>
+                        )}
+                      </div>
                     </div>
 
                     {/* Theme */}
@@ -222,6 +245,15 @@ const SandboxModal = ({ project, isOpen, onClose }) => {
               </div>
             </div>
           </motion.div>
+          
+          {/* YouTube Player */}
+          {currentVideo && (
+            <YouTubePlayer 
+              videoUrl={currentVideo} 
+              title={`Demonstração - ${project.title}`}
+              onClose={() => setCurrentVideo(null)} 
+            />
+          )}
         </>
       )}
     </AnimatePresence>
