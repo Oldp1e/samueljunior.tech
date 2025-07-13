@@ -12,6 +12,7 @@ import Projects from './pages/Projects'
 import Testimonials from './pages/Testimonials'
 import Contact from './pages/Contact'
 import Curriculum from './pages/Curriculum'
+import NotFound from './pages/NotFound'
 import useHotjar from './hooks/useHotjar'
 import { HOTJAR_CONFIG, isHotjarConfigured } from './config/hotjar'
 import './App.css'
@@ -46,6 +47,7 @@ function App() {
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/curriculum" element={<Curriculum />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>
       </Layout>

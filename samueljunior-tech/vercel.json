@@ -61,9 +61,27 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    },
+    {
+      "src": "/404",
+      "dest": "/404.html",
+      "status": 404
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/((?!api/.*).*)",
+      "destination": "/index.html"
     }
   ],
   "trailingSlash": false,
   "cleanUrls": true,
-  "directoryListing": false
+  "directoryListing": false,
+  "github": {
+    "silent": true
+  }
 }

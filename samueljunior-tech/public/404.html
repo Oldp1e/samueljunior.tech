@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/code-icon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/code-icon.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/code-icon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/code-icon.svg" />
+    <link rel="shortcut icon" href="/code-icon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#8b5cf6" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Meta Tags Básicas -->
+    <title>404 - Página não encontrada | Samuel Junior</title>
+    <meta name="description" content="A página que você procura não existe. Explore o portfólio de Samuel Junior - Desenvolvedor Full Stack & Game Developer especializado em React, Node.js e PHP." />
+    <meta name="robots" content="noindex, nofollow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://samueljunior.tech/404" />
+    <meta property="og:title" content="404 - Página não encontrada | Samuel Junior" />
+    <meta property="og:description" content="A página que você procura não existe. Explore o portfólio de Samuel Junior - Desenvolvedor Full Stack & Game Developer." />
+    <meta property="og:image" content="https://samueljunior.tech/images/card-preview.png" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://samueljunior.tech/404" />
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 100%);
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      
+      .container {
+        text-align: center;
+        max-width: 600px;
+        width: 100%;
+      }
+      
+      .error-code {
+        font-size: 6rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+      }
+      
+      .title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #ffffff;
+      }
+      
+      .description {
+        font-size: 1.1rem;
+        color: #a1a1aa;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+      
+      .buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+      
+      .btn {
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .btn-primary {
+        background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+        color: white;
+      }
+      
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+      }
+      
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+      
+      .links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .link-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+      }
+      
+      .link-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-4px);
+        border-color: #8b5cf6;
+      }
+      
+      .link-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #ffffff;
+      }
+      
+      .link-desc {
+        font-size: 0.9rem;
+        color: #a1a1aa;
+      }
+      
+      .footer {
+        color: #71717a;
+        font-size: 0.9rem;
+      }
+      
+      @media (max-width: 768px) {
+        .error-code {
+          font-size: 4rem;
+        }
+        
+        .title {
+          font-size: 1.5rem;
+        }
+        
+        .buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .btn {
+          width: 100%;
+          max-width: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="error-code">404</div>
+      <h1 class="title">Página não encontrada</h1>
+      <p class="description">
+        A página que você está procurando pode ter sido movida, renomeada ou não existe.
+        Mas não se preocupe, há muito conteúdo interessante para explorar!
+      </p>
+      
+      <div class="buttons">
+        <a href="/" class="btn btn-primary">
+          🏠 Voltar ao Início
+        </a>
+        <button onclick="history.back()" class="btn btn-secondary">
+          ← Página Anterior
+        </button>
+      </div>
+      
+      <div class="links">
+        <a href="/projects" class="link-card">
+          <div class="link-title">🚀 Projetos</div>
+          <div class="link-desc">Explore meu portfólio de projetos</div>
+        </a>
+        <a href="/about" class="link-card">
+          <div class="link-title">👨‍💻 Sobre Mim</div>
+          <div class="link-desc">Conheça minha trajetória</div>
+        </a>
+        <a href="/testimonials" class="link-card">
+          <div class="link-title">💬 Depoimentos</div>
+          <div class="link-desc">O que dizem sobre meu trabalho</div>
+        </a>
+        <a href="/contact" class="link-card">
+          <div class="link-title">📧 Contato</div>
+          <div class="link-desc">Vamos conversar sobre seu projeto</div>
+        </a>
+      </div>
+      
+      <p class="footer">
+        © 2025 Samuel Junior - Desenvolvedor Full Stack & Game Developer
+      </p>
+    </div>
+  </body>
+</html>
