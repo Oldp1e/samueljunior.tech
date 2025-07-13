@@ -136,14 +136,14 @@ const Home = () => {
                 variants={itemVariants}
                 className="text-xl md:text-2xl xl:text-3xl text-gray-300 max-w-4xl mx-auto"
               >
-                Engenheiro de Software, Game Developer e Especialista em Backend
+                Desenvolvedor Full Stack, Game Developer e Engenheiro de Software
               </motion.p>
               
               <motion.p 
                 variants={itemVariants}
                 className="text-lg xl:text-xl text-gray-400 max-w-3xl mx-auto"
               >
-                Criando experiências digitais inovadoras e divertidas 
+                Especialista em React, Node.js e PHP, criando experiências digitais inovadoras 
                 através do meu estúdio <span className="text-purple-400 font-semibold">Tropical Pixel Studios</span>
               </motion.p>
             </motion.div>
@@ -212,10 +212,10 @@ const Home = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-4">
-              Minhas <span className="gradient-text">Especialidades</span>
+              Especialidades em <span className="gradient-text">Desenvolvimento Full Stack</span>
             </h2>
             <p className="text-gray-400 text-lg xl:text-xl max-w-3xl mx-auto">
-              Combinando criatividade com tecnologia para entregar soluções excepcionais
+              Combinando React, Node.js e PHP para entregar soluções digitais excepcionais
             </p>
           </motion.div>
 
@@ -259,10 +259,10 @@ const Home = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-4">
-              Projetos em <span className="gradient-text">Destaque</span>
+              Portfólio de <span className="gradient-text">Projetos</span>
             </h2>
             <p className="text-gray-400 text-lg xl:text-xl max-w-3xl mx-auto">
-              Uma seleção dos meus trabalhos mais impactantes e inovadores
+              Soluções digitais desenvolvidas com React, Node.js, PHP e tecnologias modernas
             </p>
           </motion.div>
 
@@ -407,10 +407,10 @@ const Home = () => {
           >
             <Card className="p-12 xl:p-16 text-center">
               <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-4 xl:mb-6">
-                Pronto para dar vida às suas ideias?
+                Desenvolvedor Full Stack pronto para seus projetos?
               </h2>
               <p className="text-gray-400 text-lg xl:text-xl mb-8 xl:mb-12 max-w-3xl mx-auto">
-                Vamos conversar sobre seu próximo projeto e criar algo incrível juntos
+                Vamos conversar sobre seu próximo projeto React, Node.js ou PHP e criar algo incrível juntos
               </p>
               <Button 
                 size="lg" 
