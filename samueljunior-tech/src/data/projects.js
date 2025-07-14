@@ -111,7 +111,7 @@ export const projects = [
     videoUrl: null,
     technologies: ['Scriptcase', 'PHP', 'Javascript', 'API Receita Federal', 'MySQL', 'UAC'],
     liveUrl: 'https://app.gtplan.net/uac222b_prereg_validate/uac222b_prereg_validate.php',
-    liveUrlText: 'Visualizar',
+    liveUrlText: 'Live',
     githubUrl: null,
     featured: false
   },

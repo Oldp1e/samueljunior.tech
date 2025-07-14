@@ -392,7 +392,7 @@ const Curriculum = () => {
                         <ExternalLink className="w-4 h-4 text-gray-400 print:hidden group-hover:text-purple-400 transition-colors" />
                       </div>
                       <p className="text-gray-400 print:text-gray-700 text-sm mb-3">{project.description}</p>
-                      <div className="flex flex-wrap gap-1">
+                      <div className="flex flex-wrap gap-1 mb-3">
                         {project.technologies.map((tech, techIndex) => (
                           <span
                             key={techIndex}
@@ -401,6 +401,24 @@ const Curriculum = () => {
                             {tech}
                           </span>
                         ))}
+                      </div>
+                      
+                      {/* Botão Ver Projeto - Apenas no modo web */}
+                      <div className="print:hidden" onClick={(e) => e.stopPropagation()}>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          className="w-full text-xs"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleProjectClick(project)
+                          }}
+                        >
+                          <span className="flex items-center justify-center space-x-2">
+                            <ExternalLink className="w-3 h-3" />
+                            <span>Ver Projeto</span>
+                          </span>
+                        </Button>
                       </div>
                     </div>
                   ))}

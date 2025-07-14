@@ -341,31 +341,54 @@ const Home = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex space-x-3" onClick={(e) => e.stopPropagation()}>
-                      {project.liveUrl && (
-                        <Button 
-                          variant="secondary" 
-                          size="sm"
-                          href={project.liveUrl}
-                          className="flex-1 group"
-                        >
-                          <span className="flex items-center justify-center space-x-2">
-                            <ExternalLink className="w-4 h-4" />
-                            <span>{project.liveUrlText || 'Demo'}</span>
-                          </span>
-                        </Button>
-                      )}
-                      
-                      {project.githubUrl && (
-                        <Button 
-                          variant="ghost" 
-                          size="sm"
-                          href={project.githubUrl}
-                          className="flex items-center justify-center"
-                        >
-                          <Github className="w-4 h-4" />
-                        </Button>
-                      )}
+                    <div className="flex flex-col space-y-3" onClick={(e) => e.stopPropagation()}>
+                      {/* Botão Ver Projeto - Principal */}
+                      <Button 
+                        variant="primary" 
+                        size="sm"
+                        className="w-full"
+                        aria-label={`Ver detalhes do projeto ${project.title}`}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          openProjectModal(project)
+                        }}
+                      >
+                        <span className="flex items-center justify-center space-x-2">
+                          <ExternalLink className="w-4 h-4" />
+                          <span>Ver Projeto</span>
+                        </span>
+                      </Button>
+
+                      {/* Botões secundários */}
+                      <div className={`grid gap-3 ${project.liveUrl && project.githubUrl ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                        {project.liveUrl && (
+                          <Button 
+                            variant="secondary" 
+                            size="sm"
+                            href={project.liveUrl}
+                            className="group"
+                          >
+                            <span className="flex items-center justify-center space-x-2">
+                              <ExternalLink className="w-4 h-4" />
+                              <span>{project.liveUrlText || 'Demo'}</span>
+                            </span>
+                          </Button>
+                        )}
+                        
+                        {project.githubUrl && (
+                          <Button 
+                            variant="secondary" 
+                            size="sm"
+                            href={project.githubUrl}
+                            className="group"
+                          >
+                            <span className="flex items-center justify-center space-x-2">
+                              <Github className="w-4 h-4" />
+                              <span>GitHub</span>
+                            </span>
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </Card>

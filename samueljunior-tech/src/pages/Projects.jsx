@@ -268,41 +268,64 @@ const Projects = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex space-x-3" onClick={(e) => e.stopPropagation()}>
-                      {project.liveUrl && (
-                        <Button 
-                          variant="secondary" 
-                          size="sm"
-                          href={project.liveUrl}
-                          className="flex-1 group"
-                          aria-label={`Ver demonstração do projeto ${project.title}`}
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            triggerEvent(`project_demo_click_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
-                          }}
-                        >
-                          <span className="flex items-center justify-center space-x-2">
-                            <ExternalLink className="w-4 h-4" />
-                            <span>{project.liveUrlText || 'Demo'}</span>
-                          </span>
-                        </Button>
-                      )}
-                      
-                      {project.githubUrl && (
-                        <Button 
-                          variant="ghost" 
-                          size="sm"
-                          href={project.githubUrl}
-                          className="flex items-center justify-center"
-                          aria-label={`Ver código fonte do projeto ${project.title} no GitHub`}
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            triggerEvent(`project_github_click_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
-                          }}
-                        >
-                          <Github className="w-4 h-4" />
-                        </Button>
-                      )}
+                    <div className="flex flex-col space-y-3" onClick={(e) => e.stopPropagation()}>
+                      {/* Botão Ver Projeto - Principal */}
+                      <Button 
+                        variant="primary" 
+                        size="sm"
+                        className="w-full"
+                        aria-label={`Ver detalhes do projeto ${project.title}`}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          openProjectModalWithTracking(project)
+                        }}
+                      >
+                        <span className="flex items-center justify-center space-x-2">
+                          <ExternalLink className="w-4 h-4" />
+                          <span>Ver Projeto</span>
+                        </span>
+                      </Button>
+
+                      {/* Botões secundários */}
+                      <div className={`grid gap-3 ${project.liveUrl && project.githubUrl ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                        {project.liveUrl && (
+                          <Button 
+                            variant="secondary" 
+                            size="sm"
+                            href={project.liveUrl}
+                            className="group"
+                            aria-label={`Ver demonstração do projeto ${project.title}`}
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              triggerEvent(`project_demo_click_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
+                            }}
+                          >
+                            <span className="flex items-center justify-center space-x-2">
+                              <ExternalLink className="w-4 h-4" />
+                              <span>{project.liveUrlText || 'Demo'}</span>
+                            </span>
+                          </Button>
+                        )}
+                        
+                        {project.githubUrl && (
+                          <Button 
+                            variant="secondary" 
+                            size="sm"
+                            href={project.githubUrl}
+                            className="group"
+                            aria-label={`Ver código fonte do projeto ${project.title} no GitHub`}
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              triggerEvent(`project_github_click_${project.title.toLowerCase().replace(/\s+/g, '_')}`)
+                            }}
+                          >
+                            <span className="flex items-center justify-center space-x-2">
+                              <Github className="w-4 h-4" />
+                              <span>GitHub</span>
+                            </span>
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -464,41 +487,71 @@ const Projects = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex space-x-3" onClick={(e) => e.stopPropagation()}>
+                    <div className="flex flex-col space-y-3" onClick={(e) => e.stopPropagation()}>
+                      {/* Botão Ver Projeto - Principal */}
                       <Button 
-                        variant="secondary" 
+                        variant="primary" 
                         size="sm"
-                        href={project.liveUrl}
-                        className="flex-1 group border-green-500/30 hover:bg-green-500/20"
-                        onClick={() => triggerEvent(`sandbox_live_${project.id}`)}
+                        className="w-full border-green-500/50 bg-gradient-to-r from-green-500/20 to-emerald-500/20 hover:from-green-500/30 hover:to-emerald-500/30"
+                        aria-label={`Ver detalhes do projeto ${project.title}`}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          openSandboxModal(project)
+                        }}
                       >
                         <span className="flex items-center justify-center space-x-2">
-                          <ExternalLink className="w-4 h-4" />
-                          <span>Live Demo</span>
+                          <Play className="w-4 h-4" />
+                          <span>Ver Projeto</span>
                         </span>
                       </Button>
-                      
-                      <Button 
-                        variant="ghost" 
-                        size="sm"
-                        href={project.githubUrl}
-                        className="flex items-center justify-center hover:bg-white/10"
-                        onClick={() => triggerEvent(`sandbox_github_${project.id}`)}
-                      >
-                        <Github className="w-4 h-4" />
-                      </Button>
 
-                      {project.vercelUrl && (
-                        <Button 
-                          variant="ghost" 
-                          size="sm"
-                          href={project.vercelUrl}
-                          className="flex items-center justify-center hover:bg-blue-500/20 text-blue-400"
-                          onClick={() => triggerEvent(`sandbox_vercel_${project.id}`)}
-                        >
-                          <span className="text-xs font-bold">▲</span>
-                        </Button>
-                      )}
+                      {/* Botões secundários */}
+                      <div className={`grid gap-3 ${(project.liveUrl ? 1 : 0) + (project.githubUrl ? 1 : 0) + (project.vercelUrl ? 1 : 0) > 2 ? 'grid-cols-2' : project.liveUrl || project.githubUrl || project.vercelUrl ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                        {project.liveUrl && (
+                          <Button 
+                            variant="secondary" 
+                            size="sm"
+                            href={project.liveUrl}
+                            className="group border-green-500/30 hover:bg-green-500/20"
+                            onClick={() => triggerEvent(`sandbox_live_${project.id}`)}
+                          >
+                            <span className="flex items-center justify-center space-x-2">
+                              <ExternalLink className="w-4 h-4" />
+                              <span>Live Demo</span>
+                            </span>
+                          </Button>
+                        )}
+                        
+                        {project.githubUrl && (
+                          <Button 
+                            variant="secondary" 
+                            size="sm"
+                            href={project.githubUrl}
+                            className="group hover:bg-white/10"
+                            onClick={() => triggerEvent(`sandbox_github_${project.id}`)}
+                          >
+                            <span className="flex items-center justify-center space-x-2">
+                              <Github className="w-4 h-4" />
+                              <span>GitHub</span>
+                            </span>
+                          </Button>
+                        )}
+
+                        {project.vercelUrl && (
+                          <Button 
+                            variant="secondary" 
+                            size="sm"
+                            href={project.vercelUrl}
+                            className="group hover:bg-blue-500/20 text-blue-400 border-blue-500/30"
+                            onClick={() => triggerEvent(`sandbox_vercel_${project.id}`)}
+                          >
+                            <span className="flex items-center justify-center space-x-2">
+                              <span className="text-xs font-bold">▲</span>
+                              <span>Vercel</span>
+                            </span>
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </Card>
