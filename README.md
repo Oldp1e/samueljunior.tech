@@ -77,10 +77,9 @@ Portfolio pessoal desenvolvido para showcasing de projetos, habilidades e experi
 ## 🚀 Performance
 
 ### **Lighthouse Scores**
-- 🎯 **Performance**: 95+
-- ♿ **Accessibility**: 100
-- 🔍 **SEO**: 100
-- ⭐ **Best Practices**: 95+
+<img width="885" height="311" alt="image" src="https://github.com/user-attachments/assets/9a9cf066-4f38-46d6-b799-f71646b80f18" />
+<img width="886" height="204" alt="image" src="https://github.com/user-attachments/assets/d5018737-4fc8-427c-bdd7-a4dd2bc37bc1" />
+<img width="893" height="293" alt="image" src="https://github.com/user-attachments/assets/bcd6c953-14ac-45de-94aa-b096a1346873" />
 
 ### **Otimizações Implementadas**
 - **Code Splitting** automático via Vite
