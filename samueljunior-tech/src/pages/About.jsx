@@ -9,28 +9,28 @@ const About = () => {
   
  const experiences = [
     {
-      year: '2025 - Atual',
-      title: 'Founder & Game Developer',
-      company: 'Tropical Pixel Studios',
+      year: 'Set/2025 - Atual',
+      title: 'Consultor de Sistemas | Desenvolvedor PHP Sênior',
+      company: 'Vivo (Telefônica Brasil)',
       description:
-        'Lidero todas as etapas do desenvolvimento de jogos indie, incluindo programação, direção de arte, marketing e publicação, criando experiências marcantes para a comunidade gamer.',
-      skills: ['Unity', 'C#', 'Game Design', 'Direção de Arte', 'Publicação']
+        'Desenvolvimento e evolução de sistemas corporativos de grande escala em ambiente crítico, altamente regulado. Atuo em decisões arquiteturais, desenvolvimento de APIs REST, segurança digital e componentes de autenticação/autorização.',
+      skills: ['PHP 8+', 'Laravel', 'APIs REST', 'OAuth2', 'JWT', 'Docker', 'MySQL', 'Oracle', 'Arquitetura', 'Segurança Digital']
     },
     {
-      year: '2023 - 2025',
-      title: 'PHP Developer III',
+      year: '2021 - 2025',
+      title: 'Desenvolvedor PHP',
       company: 'GTPLAN Supply Chain 4.0',
       description:
-        'Desenvolvimento de backends escaláveis, integrações com APIs de pagamento (Vindi), automação de processos, controle de acesso seguro (UAC) e otimização de sistemas corporativos.',
-      skills: ['PHP', 'PL/SQL', 'JavaScript', 'APIs REST', 'Autenticação JWT']
+        'Desenvolvimento de backends escaláveis e resilientes com +15.000 usuários. Integrações com APIs de pagamento (Vindi), implementação de UAC robusto, otimização PL/SQL e sincronização em tempo real.',
+      skills: ['PHP', 'PL/SQL', 'MySQL', 'APIs REST', 'JWT', 'UAC', 'CI/CD', 'Scrum']
     },
     {
       year: '2024',
       title: 'Senior PHP Developer',
       company: 'Tegra',
       description:
-        'Gerenciei a modernização de um sistema legado de RH para uma solução web, implementando múltiplas camadas de segurança, importação de dados (XML/XLSX) e regras de negócio complexas.',
-      skills: ['PHP', 'Scriptcase', 'JWT', 'MD5 Hash', 'Importação de Dados']
+        'Modernização de sistema legado de RH para web com múltiplas camadas de segurança, importação automática de dados (XML/XLSX) e regras de negócio complexas para setor de saúde.',
+      skills: ['PHP', 'Scriptcase', 'JWT', 'Security', 'Data Import', 'Healthcare Systems']
     },
     {
       year: '2020 - 2021',
@@ -80,7 +80,7 @@ const About = () => {
             Sobre <span className="gradient-text">Mim</span>
           </h1>
           <p className="text-xl xl:text-2xl text-gray-400 max-w-4xl mx-auto">
-            Desenvolvedor apaixonado por tecnologia, inovação e criação de experiências digitais únicas
+            Desenvolvedor Backend Sênior com foco em PHP, arquitetura escalável e sistemas de alta disponibilidade
           </p>
         </motion.div>
 
@@ -98,20 +98,21 @@ const About = () => {
                 <h2 className="text-2xl xl:text-3xl font-bold text-white mb-6">Minha Jornada</h2>
                 <div className="space-y-6 text-gray-300 leading-relaxed text-base xl:text-lg">
                   <p>
-                    Opa, me chamo Samuel e sou Engenheiro de Software, Game Developer e Especialista em Backend. 
-                    Apaixonado por tecnologia e inovação, trilho minha carreira desenvolvendo soluções robustas, criativas e seguras para diferentes segmentos do mercado.
+                    Olá, me chamo Samuel e sou <span className="text-purple-400 font-semibold">Desenvolvedor Backend Sênior</span> com foco em PHP e arquitetura de sistemas escaláveis. 
+                    Apaixonado por engenharia de software, trilho minha carreira desenvolvendo backends críticos, APIs robustas e integrações complexas com foco em performance, segurança e manutenibilidade.
                   </p>
                   <p>
-                    Minha jornada começou há mais de 6 anos, passando por experiências em desenvolvimento full stack, infraestrutura, segurança, automação de processos e 
-                    criação de jogos digitais. Tenho sólida experiência em PHP, PL/SQL, JavaScript, React e integração de APIs, 
-                    sempre adotando princípios de clean code e foco em performance.
-                  </p>
-                  <p>Na <span className="text-purple-400 font-semibold">Tropical Pixel Studios</span>, meu estúdio independente, lidero todas as etapas do desenvolvimento de jogos da programação à publicação, 
-                  criando experiências marcantes para a comunidade gamer e construindo uma marca indie sustentável.                   
+                    Minha jornada começou há 6+ anos passando por experiências variadas, mas encontrei minha especialização em <span className="text-purple-400 font-semibold">desenvolvimento backend</span> e <span className="text-purple-400 font-semibold">arquitetura de sistemas</span>. 
+                    Tenho expertise sólida em PHP 8+, Laravel, Slim, PL/SQL, otimização de queries, OAuth2, JWT e implementação de sistemas de alta disponibilidade. 
+                    Trabalho com tecnologias como Docker, CI/CD, RabbitMQ, Kafka e tenho mentalidade focada em engenharia de software, não apenas codificar features.
                   </p>
                   <p>
-                    Quando não estou codando, gosto de estudar novas tecnologias, jogar diversos jogos e compartilhar conhecimento com a comunidade de 
-                    desenvolvedores.
+                    Atualmente sou <span className="text-purple-400 font-semibold">Consultor de Sistemas na Vivo (Telefônica Brasil)</span>, onde atuo em decisões arquiteturais, 
+                    evolução de sistemas corporativos de grande escala e participação ativa em componentes críticos de segurança digital e proteção de dados.
+                  </p>
+                  <p>
+                    Tenho perfil analítico, visão sistêmica e facilidade para transitar entre negócio, produto e tecnologia. Fora do trabalho, gosto de estudar novas tecnologias, 
+                    experimentar com infraestrutura (homelab dockerizado com redes, VPN, DNS) e compartilhar conhecimento com a comunidade de desenvolvedores.
                   </p>
                 </div>
               </Card>
@@ -146,12 +147,12 @@ const About = () => {
                 <h3 className="text-xl xl:text-2xl font-bold text-white mb-4">Interesses</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    'Jogos Indie',
-                    'Game Development',
                     'Backend Development',
                     'DevOps',
-                    'Unity e C#',
+                    'Arquitetura de Sistemas',
                     'Software Engineering',
+                    'APIs REST',
+                    'Segurança',
                   ].map((interest, index) => (
                     <motion.span
                       key={interest}

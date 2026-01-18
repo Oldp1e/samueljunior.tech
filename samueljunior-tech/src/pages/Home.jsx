@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useRef } from 'react'
-import { ArrowRight, Download, Github, Linkedin, Play, Code, Gamepad2, Shield, Server, Database, Cog, Eye, ExternalLink, Star } from 'lucide-react'
+import { ArrowRight, Github, Linkedin, Play, Server, Shield, Database, Cog, Eye, ExternalLink, Star } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import ProjectModal from '../components/ProjectModal'
@@ -25,27 +25,27 @@ const Home = () => {
   
   const skills = [
     { 
-      icon: Code, 
-      title: 'Full Stack Development',
-      description: 'React, Node.js, PHP, Scriptcase, jQuery, TypeScript, JavaScript, CSS',
+      icon: Server, 
+      title: 'Backend Development',
+      description: 'PHP 8+, Laravel, Slim, Node.js, APIs REST, SOA, Microsserviços, Arquitetura escalável',
       color: 'from-blue-500 to-cyan-500'
     },
     { 
-      icon: Gamepad2, 
-      title: 'Game Development',
-      description: 'Unity, C#, Game Design, Direção de Arte, Publicação, Marketing, Liderança de Equipe',
+      icon: Database, 
+      title: 'Database & Optimization',
+      description: 'MySQL, PostgreSQL, Oracle, PL/SQL, Query Optimization, Redis, High Volume Data',
       color: 'from-purple-500 to-pink-500'
     },
     { 
       icon: Shield, 
-      title: 'Security & Infrastructure',
-      description: 'UAC, Segurança de API, Firewall (PFsense), Windows Server, Hyper-V, Virtualização, Active Directory, FreeNAS, Monitoramento de Rede',
+      title: 'Security & Authentication',
+      description: 'OAuth2, JWT, UAC, User Access Control, API Security, Data Protection, Compliance',
       color: 'from-red-500 to-orange-500'
     },
     { 
       icon: Cog, 
-      title: 'Backend & API Engineering',
-      description: 'PHP, PL/SQL, MySQL, Oracle, REST APIs, OAuth, JWT, Payment Gateways, Microservices, Monoliths',
+      title: 'DevOps & Infrastructure',
+      description: 'Docker, CI/CD, Git, RabbitMQ, Kafka, PFsense, Server Administration, Monitoring',
       color: 'from-green-500 to-teal-500'
     }
   ]
@@ -136,15 +136,15 @@ const Home = () => {
                 variants={itemVariants}
                 className="text-xl md:text-2xl xl:text-3xl text-gray-300 max-w-4xl mx-auto"
               >
-                Desenvolvedor Full Stack, Game Developer e Engenheiro de Software
+                Desenvolvedor Backend Sênior especializado em PHP
               </motion.p>
               
               <motion.p 
                 variants={itemVariants}
                 className="text-lg xl:text-xl text-gray-400 max-w-3xl mx-auto"
               >
-                Especialista em React, Node.js e PHP, criando experiências digitais inovadoras 
-                através do meu estúdio <span className="text-purple-400 font-semibold">Tropical Pixel Studios</span>
+                Atuo no desenvolvimento de backends críticos, APIs escaláveis e integrações complexas com foco em arquitetura, 
+                performance e segurança. Atualmente <span className="text-purple-400 font-semibold">Consultor de Sistemas na Vivo</span>.
               </motion.p>
             </motion.div>
 
@@ -212,10 +212,10 @@ const Home = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-4">
-              Especialidades em <span className="gradient-text">Desenvolvimento Full Stack</span>
+              Especialidades em <span className="gradient-text">Backend & Arquitetura</span>
             </h2>
             <p className="text-gray-400 text-lg xl:text-xl max-w-3xl mx-auto">
-              Combinando React, Node.js e PHP para entregar soluções digitais excepcionais
+              Arquitetura escalável, APIs robustas e sistemas de alta disponibilidade com PHP, Laravel e tecnologias modernas
             </p>
           </motion.div>
 
@@ -259,10 +259,10 @@ const Home = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-4">
-              Portfólio de <span className="gradient-text">Projetos</span>
+              Projetos de <span className="gradient-text">Backend & Integrações</span>
             </h2>
             <p className="text-gray-400 text-lg xl:text-xl max-w-3xl mx-auto">
-              Soluções digitais desenvolvidas com React, Node.js, PHP e tecnologias modernas
+              Sistemas escaláveis, APIs REST, integrações críticas e plataformas corporativas desenvolvidas com PHP, Node.js e tecnologias enterprise
             </p>
           </motion.div>
 
@@ -430,10 +430,10 @@ const Home = () => {
           >
             <Card className="p-12 xl:p-16 text-center">
               <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-4 xl:mb-6">
-                Desenvolvedor Full Stack pronto para seus projetos?
+                Desenvolvedor Backend pronto para sua próxima solução?
               </h2>
               <p className="text-gray-400 text-lg xl:text-xl mb-8 xl:mb-12 max-w-3xl mx-auto">
-                Vamos conversar sobre seu próximo projeto React, Node.js ou PHP e criar algo incrível juntos
+                Vamos conversar sobre arquitetura backend, APIs escaláveis e integrações críticas para seu projeto corporativo
               </p>
               <Button 
                 size="lg" 

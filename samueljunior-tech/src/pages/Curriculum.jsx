@@ -24,7 +24,6 @@ const Curriculum = () => {
   // Função para mapear projetos do currículo com os dados centralizados
   const findCentralizedProject = (projectName) => {
     const projectMap = {
-      'Entity Strike': 'Entity Strike',
       'Sistema de Cadastro de Fornecedores': 'Cadastro de Fornecedores',
       'Easy Bid': 'Easy Bid',
       'Outdoors Adventures Malta API': 'Outdoors Adventures Malta API',
@@ -72,7 +71,7 @@ const Curriculum = () => {
 
   const personalInfo = {
     name: 'Samuel Pereira Lima Júnior',
-    title: 'Engenheiro de Software & Game Developer',
+    title: 'Desenvolvedor Backend Sênior / Consultor de Sistemas',
     email: 'samuellima06091999@gmail.com',
     phone: '+55 (19) 99158-0864',
     location: 'São Paulo, Brasil',
@@ -80,41 +79,46 @@ const Curriculum = () => {
     linkedin: 'https://linkedin.com/in/samuel-pereira-lima-junior'
   }
 
-  const summary = `Engenheiro de Software, Game Developer e Especialista em Backend com mais de 6 anos de experiência. Apaixonado por tecnologia e inovação, trilho minha carreira desenvolvendo soluções robustas, criativas e seguras para diferentes segmentos do mercado. Founder da Tropical Pixel Studios, onde lidero todas as etapas do desenvolvimento de jogos indie. Experiência sólida em PHP, PL/SQL, JavaScript, React, Unity e integração de APIs, sempre adotando princípios de clean code e foco em performance.`
+  const summary = `Desenvolvedor Backend Sênior com forte experiência em PHP e arquitetura de sistemas escaláveis. Atuo no desenvolvimento e evolução de backends críticos, APIs e integrações complexas, com foco em performance, segurança e manutenibilidade. Atualmente trabalho como Consultor de Sistemas na Vivo, participando de decisões arquiteturais e evolução de sistemas corporativos de grande escala.`
 
   const skills = {
-    'Linguagens de Programação': ['JavaScript', 'C#', 'PHP', 'Python', 'SQL', 'PL/SQL'],
-    'Frontend': ['React', 'HTML5', 'CSS3', 'Tailwind CSS', 'Responsive Design'],
-    'Backend': ['Node.js', 'Express', 'API REST', 'JWT', 'Scriptcase', 'Autenticação'],
-    'Banco de Dados': ['MySQL', 'PL/SQL', 'MongoDB'],
-    'Game Development': ['Unity', 'C#', '2D/3D Graphics', 'Steam Publishing', 'Game Design'],
-    'DevOps & Tools': ['Git', 'GitHub', 'Chrome Extensions', 'Vite', 'PFsense'],
-    'Outras': ['Inteligência Artificial', 'Integração APIs', 'Infraestrutura', 'Segurança', 'Automação']
+    'Linguagens de Programação': ['PHP 8+', 'JavaScript (ES6+)', 'SQL', 'PL/SQL', 'Java'],
+    'Frameworks & Arquitetura': ['Laravel', 'Slim', 'Express', 'API REST', 'SOA', 'Microsserviços'],
+    'Autenticação & Segurança': ['OAuth2', 'JWT', 'User Access Control (UAC)', 'Proteção de Dados', 'MD5 Hash'],
+    'Banco de Dados': ['MySQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Redis', 'Otimização de Queries'],
+    'DevOps & Infraestrutura': ['Docker', 'Git/GitHub', 'CI/CD', 'RabbitMQ', 'Kafka', 'PFsense', 'VPN'],
+    'Testes & Qualidade': ['PHPUnit', 'Testes Automatizados', 'Clean Code', 'Versionamento Estruturado'],
+    'Outras': ['Integração APIs', 'Infraestrutura', 'Análise de Requisitos', 'Documentação Técnica', 'Scrum/Kanban']
   }
 
   const experience = [
     {
-      title: 'Founder & Game Developer',
-      company: 'Tropical Pixel Studios',
-      period: '2025 - Atual',
-      description: 'Lidero todas as etapas do desenvolvimento de jogos indie, incluindo programação, direção de arte, marketing e publicação, criando experiências marcantes para a comunidade gamer.',
+      title: 'Consultor de Sistemas | Desenvolvedor PHP Sênior',
+      company: 'Vivo (Telefônica Brasil)',
+      period: 'Set/2025 - Atual',
+      description: 'Atuo no desenvolvimento e evolução de sistemas corporativos de grande escala em ambiente crítico, altamente regulado e com forte foco em segurança e confiabilidade.',
       achievements: [
-        'Lançamento do jogo "Entity Strike" na Steam',
-        'Desenvolvimento completo de jogos indie do conceito à publicação',
-        'Direção de arte e criação de experiências únicas',
-        'Construção de marca indie sustentável'
+        'Desenvolvimento e manutenção de sistemas em PHP, JavaScript e Java com foco em performance e escalabilidade',
+        'Criação e evolução de APIs REST para integrações entre sistemas internos e externos',
+        'Atuação em componentes de Segurança Digital, autenticação, autorização e proteção de dados',
+        'Análise técnica de requisitos e proposição de soluções arquiteturais eficientes',
+        'Participação ativa em decisões de arquitetura, escolha de tecnologias e desenho de novos fluxos',
+        'Garantia de qualidade de código através de boas práticas, versionamento estruturado e testes automatizados',
+        'Atuação em times ágeis (planning, dailies, reviews e retrospectives) com contato direto com stakeholders'
       ]
     },
     {
-      title: 'PHP Developer III',
+      title: 'Desenvolvedor PHP',
       company: 'GTPLAN Supply Chain 4.0',
-      period: '2023 - 2025',
-      description: 'Desenvolvimento de backends escaláveis, integrações com APIs de pagamento (Vindi), automação de processos, controle de acesso seguro (UAC) e otimização de sistemas corporativos.',
+      period: '2021 - 2025',
+      description: 'Desenvolvimento de backends escaláveis e resilientes, integrações com APIs de pagamento (Vindi), implementação de controle de acesso seguro (UAC), otimização de queries PL/SQL e sincronização em tempo real.',
       achievements: [
-        'Desenvolvimento do Sistema de Cadastro de Fornecedores com +15.000 usuários',
-        'Integração com APIs de pagamento e governamentais (Receita Federal)',
-        'Implementação de sistemas UAC e controle de acesso seguro',
-        'Automação de processos e otimização de sistemas corporativos'
+        'Desenvolvimento de Sistema de Cadastro de Fornecedores com +15.000 usuários',
+        'Criação de bibliotecas próprias e integrações com gateways de pagamento',
+        'Implementação de User Access Control (UAC) robusto e autenticação segura',
+        'Otimização de queries PL/SQL em bancos de alto volume',
+        'Integração de APIs internas e externas para sincronização em tempo real',
+        'Atuação com Scrum e Kanban, CI/CD e entrega contínua'
       ]
     },
     {
@@ -168,12 +172,6 @@ const Curriculum = () => {
   ]
 
   const projects = [
-    {
-      name: 'Entity Strike',
-      description: 'Jogo indie bullet-hell/survivors publicado na Steam pela Tropical Pixel Studios',
-      technologies: ['Unity', 'C#', '2D Graphics', 'Steam SDK'],
-      link: 'https://store.steampowered.com/app/3685980/Entity_Strike/'
-    },
     {
       name: 'Sistema de Cadastro de Fornecedores',
       description: 'Plataforma híbrida robusta com +15.000 usuários e integração com APIs governamentais',

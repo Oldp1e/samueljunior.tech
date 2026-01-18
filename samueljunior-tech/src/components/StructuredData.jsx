@@ -10,25 +10,34 @@ const StructuredData = () => {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Samuel Junior",
-      "jobTitle": "Desenvolvedor Full Stack",
-      "description": "Desenvolvedor Full Stack especializado em React, Node.js e PHP",
+      "jobTitle": "Desenvolvedor Backend Sênior / Consultor de Sistemas",
+      "description": "Desenvolvedor Backend Sênior especializado em PHP, arquitetura de sistemas escaláveis e APIs REST",
       "url": "https://samueljunior.tech",
       "sameAs": [
-        "https://linkedin.com/in/samuel-lima-analista-ti/",
-        "https://github.com/samuel-junior"
+        "https://linkedin.com/in/samuel-pereira-lima-junior/",
+        "https://github.com/Oldp1e"
       ],
       "knowsAbout": [
-        "React",
-        "Node.js", 
         "PHP",
-        "JavaScript",
-        "TypeScript",
-        "Full Stack Development",
-        "Web Development"
+        "Laravel",
+        "Slim",
+        "API REST",
+        "OAuth2",
+        "JWT",
+        "MySQL",
+        "PostgreSQL",
+        "Oracle",
+        "Docker",
+        "CI/CD",
+        "Backend Development",
+        "Systems Architecture",
+        "Database Optimization",
+        "Microservices",
+        "SOA"
       ],
       "worksFor": {
         "@type": "Organization",
-        "name": "Freelancer"
+        "name": "Vivo (Telefônica Brasil)"
       },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -42,9 +51,9 @@ const StructuredData = () => {
       '/': {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "Samuel Junior - Desenvolvedor Full Stack",
+        "name": "Samuel Junior - Desenvolvedor Backend Sênior",
         "url": "https://samueljunior.tech",
-        "description": "Portfólio oficial de Samuel Junior, desenvolvedor full stack especializado em React, Node.js e PHP",
+        "description": "Portfólio oficial de Samuel Junior, Desenvolvedor Backend Sênior especializado em PHP, arquitetura de sistemas escaláveis e APIs REST",
         "author": baseStructuredData,
         "potentialAction": {
           "@type": "SearchAction",
